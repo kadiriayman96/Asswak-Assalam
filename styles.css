@@ -21,7 +21,7 @@ body {
 }
 
 
-/* Login Page Styles */
+/* Login Page Styles -- Ayman Kadiri */
 
 .brand-wrapper {
   padding-top: 7px;
@@ -136,7 +136,7 @@ body {
   }
 }
 
-/* Dashboard Page Styles */
+/* Dashboard Page Styles - Ayman Kadiri */
 
 
 p {
@@ -177,9 +177,6 @@ a:focus {
   margin: 40px 0;
 }
 
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
 
 .wrapper {
   display: flex;
@@ -252,11 +249,6 @@ ul ul a {
 }
 
 
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
 #content {
   width: 100%;
   padding: 20px;
@@ -300,12 +292,6 @@ ul ul a {
   padding-left: 30px;
 }
 
-
-
-
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
 
 @media (max-width: 768px) {
   #sidebar {
