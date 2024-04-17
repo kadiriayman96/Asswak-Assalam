@@ -2,11 +2,13 @@
 
 
 :root {
-  --primary-color: #003559;
-  --secondary-color: #006DAA;
+  --primary-color: #061A40;
+  --secondary-color: #0353A4;
+  --tertiary-color: #006DAA;
+  --button-color: #003559;
   --background-color: #B9D6F2;
-
 }
+
 
 body {
   font-family: "Montserrat", sans-serif;
@@ -14,7 +16,12 @@ body {
   font-style: normal;
   background-color: white;
   min-height: 100vh;
+  margin: 0;
+  background-color: var(--background-color);
 }
+
+
+/* Login Page Styles */
 
 .brand-wrapper {
   padding-top: 7px;
@@ -81,7 +88,7 @@ body {
 
 .login-wrapper .login-btn {
   padding: 13px 20px;
-  background-color: var(--primary-color);
+  background-color: var(--button-color);
   border-radius: 0;
   font-size: 20px;
   font-weight: bold;
@@ -90,9 +97,9 @@ body {
 }
 
 .login-wrapper .login-btn:hover {
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--button-color);
   background-color: white;
-  color: var(--primary-color);
+  color: var(--button-color);
 }
 
 .login-wrapper a.forgot-password-link {
@@ -127,4 +134,194 @@ body {
   .login-section-wrapper {
     margin-top: 70px;
   }
+}
+
+/* Dashboard Page Styles */
+
+
+p {
+
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.navbar {
+  padding: 15px 10px;
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 40px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+  box-shadow: none;
+  outline: none !important;
+  border: none;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: white;
+  color: black;
+  transition: all 0.3s;
+  position: relative;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: white;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  background-color: #eeeeee;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+  color: black;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+
+}
+
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: white;
+}
+
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+
+#nav-top-mobile {
+  display: none !important;
+}
+
+.logout-area {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.logout-logo {
+  width: 30px;
+  height: 30px;
+}
+
+.logout-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.admin-name {
+  font-weight: bold;
+}
+
+#arrow {
+  position: absolute;
+  padding-left: 30px;
+}
+
+
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+
+  #sidebarCollapse span {
+    display: none;
+  }
+
+  #nav-top-mobile {
+    display: block !important;
+  }
+
 }
