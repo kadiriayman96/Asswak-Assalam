@@ -10,8 +10,8 @@
 #content {
     background-image: url(img/6325399.jpg);
     background-size: cover;
-    background-color: #000;
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: #000; */
+    background-color: rgba(0, 0, 0, 0.808);
 }
 .right-content {
     z-index: 999;
@@ -63,6 +63,7 @@
     align-items: center;
     width: 170px;
     background-color: var(--button-color);
+    cursor: pointer;
    
     height: 43px;
 }
@@ -108,6 +109,100 @@
 .add {
     color: var(--tertiary-color);
 }
+.add:hover {
+    color: #1f92d4;
+}
 .delete {
     color: #AA0000;
 }
+.delete:hover {
+    color: red;
+}
+
+/* addModal */
+#addModalBg, #updateModalBg {
+    display: none;
+    /* position: absolute; */
+   
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+.addModal, .updateModal {
+    width: 272px;
+    height: 378px;
+    background-color: white;
+}
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.modalLogo {
+   display: flex;
+   justify-content: center;
+}
+.modalLogo img {
+    width: 143px;
+    height: 40px;
+    object-fit: cover;
+}
+form {
+    padding: 20px;
+}
+form input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #17171796;
+}
+form input:focus {
+    outline: none;
+}
+#submit-btn button{
+    background-color: var(--button-color);
+    color: white;
+    width: 100%;
+    height: 32px;
+    border: none;
+    cursor: pointer;
+
+}
+.closeBtnContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    height: 30px;
+}
+.custom-close {
+    color: #aaa;
+    /* float: right; */
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .custom-close:hover,
+  .custom-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* .custom-btn-container {
+    margin-top: 20px;
+  } */
+  
+  /* button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+  } */
