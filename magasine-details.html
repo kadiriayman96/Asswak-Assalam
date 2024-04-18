@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Dashboard Analytics</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="magasine-details.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-wrapper">
+            <img src="img/logo.png" alt="logo" class="logo" />
+          </div>
+        </div>
+
+        <ul class="list-unstyled components">
+          <li>
+            <a href="#">Dashboard Analytics</a>
+          </li>
+          <li>
+            <div class="dropdown">
+              <a
+                href="#pageSubmenu"
+                data-toggle="collapse"
+                aria-expanded="false"
+                class="dropdown-toggle"
+                >Gestion des Magasins<span
+                  class="material-symbols-outlined"
+                  id="arrow"
+                >
+                  keyboard_arrow_down
+                </span></a
+              >
+            </div>
+
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a href="#">Liste des Magasins</a>
+              </li>
+              <li>
+                <a href="#">Ajouter un Magasin</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="logout-area">
+          <div class="logout-profile">
+            <img src="img/admin-logo.jpg" alt="logo" class="logout-logo" />
+            <div>
+              <div class="admin-name">Logout <br />Admin Name</div>
+            </div>
+          </div>
+          <div class="logout-icon">
+            <span class="material-symbols-outlined"> logout </span>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Page Content  -->
+      <div id="content">
+        <nav
+          class="navbar navbar-expand-lg navbar-light bg-light"
+          id="nav-top-mobile"
+        >
+          <div class="container-fluid">
+            <button
+              class="btn btn-dark d-inline-block d-lg-none ml-auto"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i class="fas fa-align-justify"
+                ><span class="material-symbols-outlined"> menu </span></i
+              >
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Dashboard Analytics</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Liste des Magasins</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Ajouter un magasin</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Code hna akhoti   -->
+        <div class="right-content">
+          <div class="div">
+            <div class="container">
+              <div class="first-row">
+                <div class="magasinCard-info">
+                  <div class="magasi-info">
+                    <div class="magasin-name">
+                      <h4>Magasin:</h4>
+                      <p>Sidi Maarouf</p>
+                    </div>
+                    <div class="magasin-city">
+                      <h4>Ville:</h4>
+                      <p>Casablanca</p>
+                    </div>
+                    <div class="open-date">
+                      <h4>Date d’ouverture:</h4>
+                      <p>2005</p>
+                    </div>
+                  </div>
+                  <div class="cardLogo">
+                    <div class="logoD">
+                      <span class="material-symbols-outlined">
+                        storefront
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-btn">
+                  <div class="btn-ajou">
+                    <p>Ajouter Magasin</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-div">
+            <div class="container">
+              <table class="table table-hover" id="table">
+                <thead>
+                  <tr>
+                    <th>Annee</th>
+                    <th>CA</th>
+                    <th>Effectifs</th>
+                    <th>Surface</th>
+                    <th>Action a fair</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2023</td>
+                    <td>320000000</td>
+                    <td>500</td>
+                    <td>900m</td>
+                    <td class="actionMD">
+                      <div class="add">Modifier</div>
+                      <div class="delete">Supprimer</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2022</td>
+                    <td>450000000</td>
+                    <td>400</td>
+                    <td>800m</td>
+                    <td class="actionMD">
+                      <div class="add">Modifier</div>
+                      <div class="delete">Supprimer</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2021</td>
+                    <td>430000000</td>
+                    <td>400</td>
+                    <td>500m</td>
+                    <td class="actionMD">
+                      <div class="add">Modifier</div>
+                      <div class="delete">Supprimer</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2020</td>
+                    <td>50000000</td>
+                    <td>200</td>
+                    <td>500m</td>
+                    <td class="actionMD">
+                      <div class="add">Modifier</div>
+                      <div class="delete">Supprimer</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2019</td>
+                    <td>210000000</td>
+                    <td>150</td>
+                    <td>500m</td>
+                    <td class="actionMD">
+                      <div class="add">Modifier</div>
+                      <div class="delete">Supprimer</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>

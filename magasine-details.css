@@ -1,0 +1,113 @@
+:root {
+    --primary-color: #061A40;
+    --secondary-color: #0353A4;
+    --tertiary-color: #006DAA;
+    --button-color: #003559;
+    --background-color: #B9D6F2;
+}
+
+
+#content {
+    background-image: url(img/6325399.jpg);
+    background-size: cover;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.right-content {
+    z-index: 999;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.first-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+.magasinCard-info {
+    display:flex ;
+    background-color: white;
+    width: 427px;
+    padding: 10px;
+    height: 120px;
+
+}
+.magasi-info {
+    width: 70%;
+    /* background-color: rgb(111, 111, 111); */
+
+}
+.magasin-name, .magasin-city, .open-date{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    /* padding-top: 20px; */
+    height: 35px;
+}
+.magasin-name p, .magasin-city p, .open-date p {
+    color: #000000;
+    padding-top: 10px;
+}
+.magasin-name h4, .magasin-city h4, .open-date h4 {
+    color: #000000;
+}
+.add-btn {
+    display: flex;
+    align-items: end;
+}
+.btn-ajou {
+    /* width: 30%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    background-color: var(--button-color);
+   
+    height: 43px;
+}
+.btn-ajou p {
+    color: white;
+}
+.cardLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+.logoD {
+    background-color:var(--primary-color) ;
+    border-radius: 50%;
+    width: 90%;
+    height: 106%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+} 
+.cardLogo .material-symbols-outlined {
+    font-size: 90px;
+    color: white;
+    /* align-self: center; */
+}
+ /* table */
+.table-div {
+    margin-top: 100px;
+}
+#table {
+    background-color: white;
+    padding-left: 20px;
+}
+.actionMD {
+    display: flex;
+    gap: 20px;
+}
+.add , .delete {
+    cursor: pointer;
+}
+.add {
+    color: var(--tertiary-color);
+}
+.delete {
+    color: #AA0000;
+}
