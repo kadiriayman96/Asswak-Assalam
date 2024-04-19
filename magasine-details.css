@@ -6,14 +6,6 @@
     --background-color: #B9D6F2;
 }
 
-
-#content {
-    background-image: url(img/633.jpg);
-    background-size: cover;
-    overflow: hidden;
-    /* background-color: #000; */
-    background-color: rgba(0, 0, 0, 0.808);
-}
 .right-content {
     z-index: 999;
 }
@@ -115,7 +107,7 @@
 
  /* table */
 .table-div {
-    margin-top: 100px;
+    margin-top: 90px;
 }
 #table {
     background-color: white;
