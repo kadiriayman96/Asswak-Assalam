@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Dashboard Analytics</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />  
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+
+    
+      <!-- ****************** -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="stylePart.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-wrapper">
+            <img src="img/logo.png" alt="logo" class="logo" />
+          </div>
+        </div>
+
+        <ul class="list-unstyled components">
+          <li>
+            <a href="#">Dashboard Analytics</a>
+          </li>
+          <li>
+            <div class="dropdown">
+              <a
+                href="#pageSubmenu"
+                data-toggle="collapse"
+                aria-expanded="false"
+                class="dropdown-toggle"
+                >Gestion des Magasins<span
+                  class="material-symbols-outlined"
+                  id="arrow"
+                >
+                  keyboard_arrow_down
+                </span></a
+              >
+            </div>
+
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a href="#">Liste des Magasins</a>
+              </li>
+              <li>
+                <a href="#">Ajouter un Magasin</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="logout-area">
+          <div class="logout-profile">
+            <img src="img/admin-logo.jpg" alt="logo" class="logout-logo" />
+            <div>
+              <div class="admin-name">Logout <br />Admin Name</div>
+            </div>
+          </div>
+          <div class="logout-icon">
+            <span class="material-symbols-outlined"> logout </span>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Page Content  -->
+      <div id="content">
+        <nav
+          class="navbar navbar-expand-lg navbar-light bg-light"
+          id="nav-top-mobile"
+        >
+          <div class="container-fluid">
+            <button
+              class="btn btn-dark d-inline-block d-lg-none ml-auto"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i class="fas fa-align-justify"
+                ><span class="material-symbols-outlined"> menu </span></i
+              >
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Dashboard Analytics</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Liste des Magasins</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Ajouter un magasin</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Code hna akhoti   -->
+        <div class="ajouter-magasin">
+          <div class="container container-ajouter"style="width: 90%;">
+              <h1 class="titre-ajouter">Ajouter magasin</h1>
+              <div class="form">
+                  <div class="row" style="margin-bottom: 20px;">
+                      <div class="col-md-6 " >
+                          <label for="date" class="form-label">Date de creation</label>
+                          <input type="date" class="form-control" placeholder="Date" aria-label="Date" id="date">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="status" class="form-label">Status</label>
+                          <select class="form-control" id="status">
+                              <option selected> Actif</option>
+                              <option value="1">Inactif</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="row" style="margin-bottom: 20px;">
+                      <div class="col-md-6">
+                          <label for="nom" class="form-label">Nom du magasin</label>
+                          <input type="text" class="form-control" placeholder="Nom magasin" aria-label="Nom magasin" id="nom">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="NumeroTelephone" class="form-label">Numero de telephone</label>
+                          <input type="text" class="form-control" placeholder="Numero telephone" aria-label="Numero telephone" id="NumeroTelephone">
+                      </div>
+                  </div>
+                  <div class="row"
+                  style="margin-bottom: 20px;">
+                      <div class="col-md-6">
+                          <label for="Ville" class="form-label">Ville</label>
+                          <select class="form-control" id="Ville">
+                              <option selected>Casablanca</option>
+                              <option value="1">Tanger</option>
+                              <option value="1">Marrakech</option>
+                              <option value="1">El jadida</option>
+                              <option value="1">Fes</option>
+                              <option value="1">Meknes</option>
+                          </select>
+                      </div>
+                      <div class="col-md-6">
+                          <label for="surface" class="form-label">Surface</label>
+                          <input type="number" class="form-control" placeholder="surface m²" aria-label="Last name" id="surface">
+                      </div>
+                  </div>
+                  <div class="row" style="margin-bottom: 20px;">
+                      <div class="col-md-12">
+                          <label for="adresse" class="form-label">Address</label>
+                          <input type="text" class="form-control" placeholder="Adresse" aria-label="Adresse" id="adresse">
+                      </div>
+                  </div>
+              </div>
+              <button class="btn btn-primary btn-ajouter">Ajouter</button>
+          </div>
+      </div>
+      
+      </div>
+    </div>
+   
+  </body>
+  <script src="./scripts/ajouter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="scripts/dashboard-analytics.js"></script>
+
+</html>
