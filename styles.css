@@ -134,14 +134,13 @@ body {
   .login-section-wrapper {
     margin-top: 70px;
   }
+
 }
 
-/* Dashboard Page Styles - Ayman Kadiri */
-
+/* Dashboard Analytics Styles - Ayman Kadiri */
 
 p {
-
-  font-size: 1.1em;
+  font-size: 10px;
   font-weight: 300;
   line-height: 1.7em;
   color: #999;
@@ -176,7 +175,6 @@ a:focus {
   border-bottom: 1px dashed #ddd;
   margin: 40px 0;
 }
-
 
 .wrapper {
   display: flex;
@@ -241,13 +239,11 @@ a[data-toggle="collapse"] {
 
 }
 
-
 ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
   background: white;
 }
-
 
 #content {
   width: 100%;

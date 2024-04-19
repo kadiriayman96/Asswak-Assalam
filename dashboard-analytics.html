@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Dashboard Analytics</title>
+    <link rel="icon" type="image/png" href="img/fav-icon.webp" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      href="https://fonts.googleapis.com/css2?family=Material+Icons&display=block"
     />
-
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="dashboard-analytics.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="wrapper">
-      <!-- Sidebar  -->
+      <!-- Sidebar -->
       <nav id="sidebar">
         <div class="sidebar-header">
           <div class="brand-wrapper">
@@ -37,23 +38,14 @@
                 data-toggle="collapse"
                 aria-expanded="false"
                 class="dropdown-toggle"
-                >Gestion des Magasins<span
-                  class="material-symbols-outlined"
-                  id="arrow"
-                >
-                  keyboard_arrow_down
-                </span></a
-              >
+                >Gestion des Magasins
+                <span class="material-icons" id="arrow"> expand_more </span>
+              </a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li><a href="#">Liste des Magasins</a></li>
+                <li><a href="#">Ajouter un Magasin</a></li>
+              </ul>
             </div>
-
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-              <li>
-                <a href="#">Liste des Magasins</a>
-              </li>
-              <li>
-                <a href="#">Ajouter un Magasin</a>
-              </li>
-            </ul>
           </li>
         </ul>
         <div class="logout-area">
@@ -64,13 +56,14 @@
             </div>
           </div>
           <div class="logout-icon">
-            <span class="material-symbols-outlined"> logout </span>
+            <span class="material-icons"> logout </span>
           </div>
         </div>
       </nav>
 
-      <!-- Page Content  -->
+      <!-- Page Content -->
       <div id="content">
+        <!-- Top Navbar Mobile -->
         <nav
           class="navbar navbar-expand-lg navbar-light bg-light"
           id="nav-top-mobile"
@@ -85,11 +78,10 @@
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <i class="fas fa-align-justify"
-                ><span class="material-symbols-outlined"> menu </span></i
-              >
+              <i class="fas fa-align-justify">
+                <span class="material-icons"> menu </span>
+              </i>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active">
@@ -109,12 +101,527 @@
           </div>
         </nav>
 
-        <!-- Code hna akhoti   -->
-        <div>Hna andir chart</div>
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="ca-tab"
+              data-toggle="tab"
+              data-target="#ca"
+              type="button"
+              role="tab"
+              aria-controls="ca"
+              aria-selected="true"
+            >
+              Chiffre d'affaire
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="effectifs-tab"
+              data-toggle="tab"
+              data-target="#effectifs"
+              type="button"
+              role="tab"
+              aria-controls="effectifs"
+              aria-selected="false"
+            >
+              Effectifs
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="surface-tab"
+              data-toggle="tab"
+              data-target="#surface"
+              type="button"
+              role="tab"
+              aria-controls="surface"
+              aria-selected="false"
+            >
+              Surface
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <!-- Custom styled select -->
+            <select class="nav-link custom-select" id="year-select" role="tab">
+              <option value="2024" selected>2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+            </select>
+            <!-- End of custom styled select -->
+          </li>
+        </ul>
+
+        <!-- Tabbed Content -->
+        <div class="tab-content" id="myTabContent">
+          <!-- Chiffre d'affaire Tab -->
+          <div
+            class="tab-pane fade in active"
+            id="ca"
+            role="tabpanel"
+            aria-labelledby="ca-tab"
+          >
+            <div class="container-dash">
+              <div class="container-column">
+                <div class="col-sm center-things ca-col">
+                  <div class="card">
+                    <div class="card-data">
+                      <div class="card-header">
+                        Moyenne arithmétique pondérée
+                      </div>
+                      <div class="card-body">
+                        <h4 class="card-title">469 000 000 DH</h4>
+                        <p class="card-text">
+                          Le Chiffre d'affaires moyen de tous les magasins
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="img/ca-image.png"
+                      alt="chart image"
+                      class="card-img"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm center-things mode-col">
+                  <div class="card">
+                    <div class="card-data">
+                      <div class="card-header">Mode</div>
+                      <div class="card-body">
+                        <h4 class="card-title">476 400 000 DH</h4>
+                        <p class="card-text">
+                          Le chiffre d'affaires réalisé par le plus grand nombre
+                          de magasins est 4764000 dhs
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="img/ca-image.png"
+                      alt="chart image"
+                      class="card-img"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm center-things med-col">
+                  <div class="card">
+                    <div class="card-data">
+                      <div class="card-header">Médiane</div>
+                      <div class="card-body">
+                        <h4 class="card-title">476 400 000 DH</h4>
+                        <p class="card-text">
+                          50% des magasins réalisent un Chiffre d'affaires
+                          inférieur à 4700000dhs et par conséquent 50% d'entre
+                          eux réalisent un CA supérieur à ce résultat
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="img/ca-image.png"
+                      alt="chart image"
+                      class="card-img"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm center-things moy-col">
+                  <div class="card">
+                    <div class="card-data" id="moy-col-data">
+                      <div class="card-header">
+                        Écart-type et coefficient de variation
+                      </div>
+                      <div class="card-body">
+                        <h4 class="card-title">13,1%</h4>
+                        <p class="card-text">
+                          L'écart-type montre que les CA des magasins s'écartent
+                          en moyenne de 610000dhs, et le coefficient de
+                          variation est de 0,131 ce qui signifie que l'écart
+                          type représente 13,1% de la moyenne, donc la plupart
+                          des CA sont centrés autour du CA moyen
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm center-things" id="chart-space">
+                  <canvas id="myChartCA" class="myChart"></canvas>
+                </div>
+                <div class="col-sm center-things" id="table-space">
+                  <div class="table-responsive">
+                    <table class="table table-hover" id="table">
+                      <thead class="pad-tbl">
+                        <tr>
+                          <th>Magasin</th>
+                          <th>Ville</th>
+                          <th>Telephone</th>
+                          <th>Adresse</th>
+                          <th>Surface</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody class="pad-tbl">
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-notactive">Inactif</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-active">Actif</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-notactive">Inactif</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-active">Actif</div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Effectifs Tab -->
+          <div
+            class="tab-pane fade"
+            id="effectifs"
+            role="tabpanel"
+            aria-labelledby="effectifs-tab"
+          >
+            <div class="container-dash">
+              <div class="container-column">
+                <div class="col-sm center-things ca-col">
+                  <div class="card">
+                    <div class="card-data">
+                      <div class="card-header">
+                        Moyenne arithmétique pondérée
+                      </div>
+                      <div class="card-body">
+                        <h4 class="card-title">769 personnes</h4>
+                        <p class="card-text">
+                          L'effectifs moyen de tous les magasins
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="img/ca-image.png"
+                      alt="chart image"
+                      class="card-img"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm center-things mode-col">
+                  <div class="card">
+                    <div class="card-data">
+                      <div class="card-header">Mode</div>
+                      <div class="card-body">
+                        <h4 class="card-title">1069 personnes</h4>
+                        <p class="card-text">
+                          L'effectis réalisé par le plus grand nombre de
+                          magasins est 1069 personnes
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="img/ca-image.png"
+                      alt="chart image"
+                      class="card-img"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm center-things med-col">
+                  <div class="card">
+                    <div class="card-data">
+                      <div class="card-header">Médiane</div>
+                      <div class="card-body">
+                        <h4 class="card-title">3950 personnes</h4>
+                        <p class="card-text">
+                          50% des personnes ont des effectis à 850 personnes et
+                          par conséquent 50% d'entre eux travagent dans les
+                          magasins
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="img/ca-image.png"
+                      alt="chart image"
+                      class="card-img"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm center-things moy-col">
+                  <div class="card">
+                    <div class="card-data" id="moy-col-data">
+                      <div class="card-header">
+                        Écart-type et coefficient de variation
+                      </div>
+                      <div class="card-body">
+                        <h4 class="card-title">35,69%</h4>
+                        <p class="card-text">
+                          L'écart-type montre que les effectis des magasins
+                          s'écartent en moyenne de 970 personnes, et le
+                          coefficient de variation est de 1.9 ce qui signifie
+                          que l'écart type représente 970 personnes de la
+                          moyenne, donc la plupart des personnes sont centrés
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm center-things" id="chart-space">
+                  <canvas id="myChartEffectifs" class="myChart"></canvas>
+                </div>
+                <div class="col-sm center-things" id="table-space">
+                  <div class="table-responsive">
+                    <table class="table table-hover" id="table">
+                      <thead class="pad-tbl">
+                        <tr>
+                          <th>Magasin</th>
+                          <th>Ville</th>
+                          <th>Telephone</th>
+                          <th>Adresse</th>
+                          <th>Surface</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody class="pad-tbl">
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-notactive">Inactif</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-active">Actif</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-notactive">Inactif</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-active">Actif</div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Surface Tab -->
+          <div
+            class="tab-pane fade"
+            id="surface"
+            role="tabpanel"
+            aria-labelledby="surface-tab"
+          >
+            <div class="container-dash">
+              <div class="container-column">
+                <div class="col-sm center-things ca-col">
+                  <div class="card">
+                    <div class="card-data">
+                      <div class="card-header">
+                        Moyenne arithmétique pondérée
+                      </div>
+                      <div class="card-body">
+                        <h4 class="card-title">740 m²</h4>
+                        <p class="card-text">
+                          La surface moyenne de tous les magasins
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="img/ca-image.png"
+                      alt="chart image"
+                      class="card-img"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm center-things mode-col">
+                  <div class="card">
+                    <div class="card-data">
+                      <div class="card-header">Mode</div>
+                      <div class="card-body">
+                        <h4 class="card-title">930 m²</h4>
+                        <p class="card-text">
+                          La surface réalisé par le plus grand nombre de
+                          magasins est 930 m²
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="img/ca-image.png"
+                      alt="chart image"
+                      class="card-img"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm center-things med-col">
+                  <div class="card">
+                    <div class="card-data">
+                      <div class="card-header">Médiane</div>
+                      <div class="card-body">
+                        <h4 class="card-title">500 m²</h4>
+                        <p class="card-text">
+                          50% des magasins ont une surface inférieur à 500 m²
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="img/ca-image.png"
+                      alt="chart image"
+                      class="card-img"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm center-things moy-col">
+                  <div class="card">
+                    <div class="card-data" id="moy-col-data">
+                      <div class="card-header">
+                        Écart-type et coefficient de variation
+                      </div>
+                      <div class="card-body">
+                        <h4 class="card-title">69.5%</h4>
+                        <p class="card-text">
+                          L'écart-type montre que les surfaces des magasins
+                          s'écartent en moyenne de 860 m², et le coefficient de
+                          variation est de 1.69 ce qui signifie que l'écart type
+                          représente 69.5% de la moyenne, donc la plupart des
+                          surfaces sont centrés autour de 500 m²
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm center-things" id="chart-space">
+                  <canvas id="myChartSurface" class="myChart"></canvas>
+                </div>
+                <div class="col-sm center-things" id="table-space">
+                  <div class="table-responsive">
+                    <table class="table table-hover" id="table">
+                      <thead class="pad-tbl">
+                        <tr>
+                          <th>Magasin</th>
+                          <th>Ville</th>
+                          <th>Telephone</th>
+                          <th>Adresse</th>
+                          <th>Surface</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody class="pad-tbl">
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-notactive">Inactif</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-active">Actif</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-notactive">Inactif</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Bouskoura</td>
+                          <td>Casablanca</td>
+                          <td>05 22 69 33 33</td>
+                          <td>169, Bd Hassan 2</td>
+                          <td>300m²</td>
+                          <td>
+                            <div class="statut-active">Actif</div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- End of Tabbed Content -->
       </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="scripts/dashboard-analytics.js"></script>
   </body>
 </html>
