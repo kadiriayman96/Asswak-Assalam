@@ -30,7 +30,7 @@
   align-self: center;
 }
 .v-img-card {
-  /* height: 30%; */
+  height: 50%;
   padding-bottom: 6px;
   width: 100%;
   display: flex;
