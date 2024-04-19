@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var closeDeleteBtn = document.getElementById("customCloseBtnDel")
     var closeAddBtn = document.getElementById("customCloseBtn");
     var closeUpdateBtn = document.getElementById("customCloseBtnUp");
+    var cancelBtn = document.getElementById("cancelBtn");
+
+    cancelBtn.addEventListener("click", function () {
+      deleteModal.style.display = "none";
+    });
+
     modalBtn.addEventListener("click", function () {
       modal.style.display = "flex";
     });
