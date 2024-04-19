@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+
+:root {
+  --primary-color: #061A40;
+  --secondary-color: #0353A4;
+  --tertiary-color: #006DAA;
+  --button-color: #003559;
+  --background-color: #B9D6F2;
+}
+
+/*******Ajouter*********/
+.container-ajouter {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-ajouter {
+  align-self: center;
+  padding: 7px 40px;
+  background-color: var(--button-color);
+  color: white;
+  border: none;
+  border-radius: 0px;
+  margin-top: 30px;
+}
+.titre-ajouter {
+  margin-bottom: 60px;
+  margin-top: 20px;
+  align-self: center;
+}
+input,
+select {
+  border-radius: 0px !important;
+  border: 1px solid var(--button-color) !important;
+}
+
+/**********hreader ***********/
+.all {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.grid-line {
+  width: 50%;
+  height: 1px;
+  border-bottom: 1px solid var(--primary-color);
+  margin-left: 35%;
+  margin-top: 15px;
+}
+.header-grid {
+  display: flex;
+  justify-content: space-between;
+}
+.grid-view {
+  display: flex;
+  justify-content: end;
+}
+.icon-grid {
+  margin-bottom: 30px;
+}
+.title-card {
+  text-align: center;
+  margin: 5px;
+  margin-bottom: 50px;
+}
+/************hedear ********/
+.title-card p {
+  color: rgb(75, 74, 74);
+  font-size: 12px;
+}
+/****** v-cards ****/
+
+#cards-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem !important;
+  color: #b9d6f2;
+  background-color: #003559;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 15px;
+}
+
+/******* h-cards******/
+.grid-symbol {
+  border-radius: 3px;
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+  padding: 2px;
+  background-color: white;
+}
+
+
+
+.grid-symbol-2 {
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid var(--primary-color);
+  margin-left: 5px;
+  padding: 2px;
+}
+
+/*******************test card*************/
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  width: 100%;
+  gap: 60px;
+  justify-content: space-between;
+}
+
+.v-card {
+  width: calc(23% - 30px); /* Adjust the width to show 4 cards per row */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 250px;
+  /**************/
+  align-items: center;
+  justify-content: center;
+  border-radius: 0%;
+}
+
+.v-card-content {
+  padding: 10px;
+  text-align: center;
+}
+
+.v-card-title {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  align-items: center;
+  margin-top: 0px;
+}
+
+.v-card-text {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+#icon-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  font-size: 3rem !important;
+  color: #b9d6f2;
+  background-color: #003559;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 15px;
+}
+.v-p-card {
+  margin-bottom: 3px;
+}
+.tools {
+  display: flex;
+  width: 100%;
+}
+
+.annee select {
+  width: 150px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid var(--button-color);
+}
+
+/*************/
+.h-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: calc(30% - 5px); /* Adjust the width to show 4 cards per row */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+  background-color: white;
+  height: 150px; /* Adjust the height */
+
+  /***************/
+}
+
+#icon-card {
+  font-size: 3rem !important;
+  color: #b9d6f2;
+  background-color: #003559;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 15px;
+}
+
+.h-card-content {
+  padding: 10px;
+
+  flex: 1; /* Adjust the size of the content area */
+}
+
+.h-card-title {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  margin-top: 0px;
+}
+
+.h-card-text {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.h-p-card {
+  margin-bottom: 3px;
+}
+
+/************/
+@media (max-width: 768px) {
+  .cards{
+    flex: 0 0 calc(100% - 20px);
+  }
+  .v-card {
+    flex: 0 0 calc(50% - 20px);
+    margin-right: 0px;
+  }
+  .h-card {
+    flex: 0 0 calc(50% - 20px);
+    margin-right: 0px;
+  }
+  .tools {
+    margin-left: 30px;
+  }
+}
+@media (max-width: 400px) {
+  .v-card {
+    flex: 0 0 calc(100% - 20px);
+    margin-right: 0px;
+  }
+  .h-card {
+    flex: 0 0 calc(100% - 20px);
+    margin-right: 0px;
+  }
+}

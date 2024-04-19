@@ -126,6 +126,8 @@ body {
   object-position: left;
 }
 
+
+
 @media (max-width: 575px) {
   .login-wrapper a.forgot-password-link {
     margin-bottom: 16px;
