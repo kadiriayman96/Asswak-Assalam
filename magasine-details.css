@@ -8,89 +8,107 @@
 
 
 #content {
-    background-image: url(img/6325399.jpg);
+    background-image: url(img/633.jpg);
     background-size: cover;
+    overflow: hidden;
     /* background-color: #000; */
     background-color: rgba(0, 0, 0, 0.808);
 }
 .right-content {
     z-index: 999;
 }
-.container {
-    width: 80%;
+/* .container {
+    width: 90%;
     margin: 0 auto;
-}
+} */
 .first-row {
     display: flex;
     justify-content: space-between;
     gap: 50px;
+    margin-top: 45px;
 }
 .magasinCard-info {
-    display:flex ;
     background-color: white;
-    width: 427px;
     padding: 10px;
-    height: 120px;
-
+    /* height: 120px; */
+    display: flex;
 }
+/* .table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+    max-height: 440px;
+} */
 .magasi-info {
     width: 70%;
-    /* background-color: rgb(111, 111, 111); */
-
 }
-.magasin-name, .magasin-city, .open-date{
+
+.magasin-name, .magasin-city, .open-date {
     display: flex;
     gap: 10px;
     align-items: center;
-    /* padding-top: 20px; */
     height: 35px;
 }
+
 .magasin-name p, .magasin-city p, .open-date p {
     color: #000000;
     padding-top: 10px;
 }
+
 .magasin-name h4, .magasin-city h4, .open-date h4 {
     color: #000000;
 }
+
 .add-btn {
     display: flex;
-    align-items: end;
+    align-items: start;
+    justify-content: end;
+    margin-top: 20px;
+
 }
+
 .btn-ajou {
-    /* width: 30%; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 170px;
     background-color: var(--button-color);
     cursor: pointer;
-   
     height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 7px;
+    margin-top: 62px;
 }
+@media screen and (max-width: 768px) {
+    .btn-ajou {
+       margin-top: 25px;
+    }
+}
+
 .btn-ajou p {
     color: white;
 }
+
 .cardLogo {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 30%;
 }
+
 .logoD {
-    background-color:var(--primary-color) ;
+    background-color: var(--primary-color);
     border-radius: 50%;
-    width: 90%;
-    height: 106%;
+    width: 60%;
+    height: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
-
-} 
-.cardLogo .material-symbols-outlined {
-    font-size: 90px;
-    color: white;
-    /* align-self: center; */
 }
+
+.cardLogo .material-symbols-outlined {
+    font-size: 60px;
+    color: white;
+}
+
  /* table */
 .table-div {
     margin-top: 100px;
@@ -98,6 +116,14 @@
 #table {
     background-color: white;
     padding-left: 20px;
+    font-size: 18px;
+    /* overflow: scroll; */
+}
+#ddd {
+    /* background-color: white; */
+    min-height: .01%;
+    overflow-y: auto;
+    max-height: 440px;
 }
 .actionMD {
     display: flex;
@@ -120,7 +146,7 @@
 }
 
 /* addModal */
-#addModalBg, #updateModalBg {
+#addModalBg, #updateModalBg , #deleteModalBg{
     display: none;
     /* position: absolute; */
    
@@ -206,3 +232,47 @@ form input:focus {
     margin: 0 10px;
     cursor: pointer;
   } */
+.deleteModal {
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    text-align: center;                                                                                                                                                                                                                                                                                                                                                                                                           
+}
+.delcancBtn {
+    display: flex;
+    justify-content: space-between;
+}
+.deleteTitle,.deleteText, .delcancBtn {
+    padding-top: 10px;
+    width: 80%;
+    margin: 0 auto;
+}
+.deleteTitle #title{
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+}
+.deleteText #text {
+    font-size: 15px;
+    color: #818181;
+}
+.delcancBtn .sup {
+    background-color: var(--button-color);
+    width: 110px;
+    height: 35px;
+    border: 2px solid var(--button-color);
+    cursor: pointer;
+}
+.delcancBtn .canc {
+    background-color: white;
+    width: 110px;
+    height: 35px;
+    border: 2px solid var(--button-color);
+    cursor: pointer;
+}
+.delcancBtn .canc p {
+    color: var(--button-color);
+}
+.delcancBtn .sup p {
+    color: white;
+}
