@@ -76,6 +76,9 @@
     .btn-ajou {
        margin-top: 25px;
     }
+    .magasinCard-info {
+        width: 100%;
+    }
 }
 
 .btn-ajou p {
@@ -107,7 +110,7 @@
 
  /* table */
 .table-div {
-    margin-top: 90px;
+    margin-top: 70px;
 }
 #table {
     background-color: white;
@@ -179,7 +182,11 @@
     object-fit: cover;
 }
 form {
-    padding: 20px;
+    /* padding: 20px; */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 10px;
 }
 form input {
     border-top: none;
@@ -190,6 +197,9 @@ form input {
 form input:focus {
     outline: none;
 }
+form label {
+font-size: 1.8rem;    
+}
 #submit-btn button{
     background-color: var(--button-color);
     color: white;
@@ -197,7 +207,7 @@ form input:focus {
     height: 40px;
     border: none;
     cursor: pointer;
-
+    font-size: 18px;
 }
 .closeBtnContainer {
     display: flex;
