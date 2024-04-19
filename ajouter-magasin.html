@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Dashboard Analytics</title>
+    <title>Qjouter un magasin</title>
+    <link rel="icon" type="image/png" href="img/fav-icon.webp" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -121,7 +122,7 @@
                   <div class="row" style="margin-bottom: 20px;">
                       <div class="col-md-6 " >
                           <label for="date" class="form-label">Date de creation</label>
-                          <input type="date" class="form-control" placeholder="Date" aria-label="Date" id="date">
+                          <input type="date" class="form-control" placeholder="Date" aria-label="Date" id="date" required>
                       </div>
                       <div class="col-md-6">
                           <label for="status" class="form-label">Status</label>
@@ -134,11 +135,11 @@
                   <div class="row" style="margin-bottom: 20px;">
                       <div class="col-md-6">
                           <label for="nom" class="form-label">Nom du magasin</label>
-                          <input type="text" class="form-control" placeholder="Nom magasin" aria-label="Nom magasin" id="nom">
+                          <input type="text" class="form-control" placeholder="Nom magasin" aria-label="Nom magasin" id="nom" required>
                       </div>
                       <div class="col-md-6">
                           <label for="NumeroTelephone" class="form-label">Numero de telephone</label>
-                          <input type="text" class="form-control" placeholder="Numero telephone" aria-label="Numero telephone" id="NumeroTelephone">
+                          <input type="text" class="form-control" placeholder="Numero telephone" aria-label="Numero telephone" id="NumeroTelephone" required>
                       </div>
                   </div>
                   <div class="row"
@@ -146,17 +147,16 @@
                       <div class="col-md-6">
                           <label for="Ville" class="form-label">Ville</label>
                           <select class="form-control" id="Ville">
-                              <option selected>Casablanca</option>
-                              <option value="1">Tanger</option>
-                              <option value="1">Marrakech</option>
-                              <option value="1">El jadida</option>
-                              <option value="1">Fes</option>
-                              <option value="1">Meknes</option>
+                            <option value="Rabat">Rabat</option>
+                            <option value="Casablanca">Casablanca</option>
+                            <option value="Marrakech">Marrakech</option>
+                            <option value="Meknes">Meknes</option>
+                            <option value="Oujda">Oujda</option>
                           </select>
                       </div>
                       <div class="col-md-6">
                           <label for="surface" class="form-label">Surface</label>
-                          <input type="number" class="form-control" placeholder="surface m²" aria-label="Last name" id="surface">
+                          <input type="number" class="form-control" placeholder="surface m²" aria-label="Last name" id="surface" required>
                       </div>
                   </div>
                   <div class="row" style="margin-bottom: 20px;">
