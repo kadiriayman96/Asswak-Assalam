@@ -1,0 +1,163 @@
+.custom-select {
+    margin-left: 460%;
+    border: 1px solid #827d7d;
+    border-radius: 2px;
+    padding: 2.6px 58.7px;
+    background-color: #f0f0f0;
+    color: #333;
+    cursor: pointer;
+
+}
+
+@media screen and (max-width: 768px) {
+    .custom-select {
+        margin-left: 50%;
+        padding: 2.6px 32px;
+    }
+
+}
+
+.container-dash {
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.container-column {
+    grid-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ca-col {
+    grid-column: 1 / 2;
+}
+
+.mode-col {
+    grid-column: 2 / 3;
+}
+
+.med-col {
+    grid-column: 3 / 4;
+}
+
+.moy-col {
+    grid-column: 1 / 2;
+
+}
+
+#moy-col-data {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+#table-space {
+    grid-column: span 2;
+    width: 151.5%;
+    max-height: 140px;
+    overflow-x: auto;
+}
+
+#chart-space {
+    grid-column: span 2;
+    width: 100%;
+    height: 250px;
+    display: flex;
+}
+
+.myChart {
+    height: 150px;
+    width: 100%;
+}
+
+.center-things {
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    width: 400px;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-data {
+    flex-direction: column;
+}
+
+.card-header {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.card-img {
+    width: 70px;
+    height: 70px;
+    padding-left: 10px;
+}
+
+.statut-active {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: green;
+    opacity: 0.5;
+    border-radius: 10px;
+    text-align: center;
+    height: 20px;
+    width: 80px;
+}
+
+.statut-notactive {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: red;
+    opacity: 0.5;
+    border-radius: 10px;
+    text-align: center;
+    height: 20px;
+    width: 80px;
+}
+
+/* Media query for responsiveness */
+
+@media (max-width: 768px) {
+    .container-column {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .ca-col,
+    .mode-col,
+    .med-col,
+    .moy-col {
+        grid-column: auto;
+    }
+
+    #moy-col-data {
+        padding: 10px;
+    }
+
+
+    #chart-space {
+        grid-column: auto;
+        width: 444px;
+    }
+
+    #table-space {
+        grid-column: auto;
+        width: 444px;
+        max-height: 3000px;
+    }
+
+    .center-things {
+        width: 444px;
+    }
+}
