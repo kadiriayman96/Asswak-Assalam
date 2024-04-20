@@ -28,8 +28,9 @@ function displayCards(city) {
                 <span class="material-symbols-outlined " id="icon-card">storefront</span> 
             </div> 
             <div class="v-card-content">
-                <h3 class="v-card-title hover-effect">${magasin.name}</h3>
-                
+            <a href="magasine-details.html?id=${magasin.Id}" class="card-title">
+              <h3 class="v-card-title hover-effect">${magasin.name}</h3>
+            </a>
                 <div class="v-card-text">
                     <p class="v-p-card">Date : ${magasin.dateCreation}</p>
                     <p class="v-p-card">Ville : ${magasin.ville}</p>
@@ -39,6 +40,16 @@ function displayCards(city) {
             `;
       // Ajouter la carte au conteneur
       cardsContainer.appendChild(card);
+      //add
+      const cardTitle = card.querySelector(".card-title");
+      cardTitle.addEventListener("click", function (event) {
+        // Prevent default link behavior
+        event.preventDefault();
+        // Get the URL from the anchor tag
+        const url = this.getAttribute("href");
+        // Redirect to the URL
+        window.location.href = url;
+      });
     });
   } else {
     // Afficher un message si aucune donnée n'est disponible
@@ -91,7 +102,9 @@ function displayCardsH(city) {
                 <span class="material-symbols-outlined " id="icon-card">storefront</span> 
             </div> 
             <div class="h-card-content">
-                <h3 class="h-card-title hover-effect">${magasin.name}</h3>
+                <a href="magasine-details.html?id=${magasin.Id}" class="card-title">
+                  <h3 class="h-card-title hover-effect">${magasin.name}</h3>
+              </a>
                 <div class="h-card-text">
                     <p class="h-p-card">Date : ${magasin.dateCreation}</p>
                     <p class="h-p-card">Ville : ${magasin.ville}</p>
@@ -101,6 +114,17 @@ function displayCardsH(city) {
             `;
       // Ajouter la carte au conteneur
       cardsContainer.appendChild(card);
+
+      // Add event listener to the card title
+      const cardTitle = card.querySelector(".card-title");
+      cardTitle.addEventListener("click", function (event) {
+        // Prevent default link behavior
+        event.preventDefault();
+        // Get the URL from the anchor tag
+        const url = this.getAttribute("href");
+        // Redirect to the URL
+        window.location.href = url;
+      });
     });
   } else {
     // Afficher un message si aucune donnée n'est disponible
