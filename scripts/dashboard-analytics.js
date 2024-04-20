@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
     displayMedian(magasins, selectedYear);
     displayStandardDeviation(magasins, selectedYear);
     displayCoefficientOfVariation(magasins, selectedYear);
+    // Load and display chart data
+    const frequencies = classifyMagasinsByRange(magasins, selectedYear);
+    displayBarChartCA(frequencies);
   }
 
   // Attach change event listener to the year-select element
@@ -42,12 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initial calculation when the page is loaded
   loadDataAndCalculateStatistics();
-
-  //Load Chart data
-  const frequencies = classifyMagasinsByRange(magasins);
-
-  // Display bar chart
-  displayBarChartCA(frequencies);
 });
 function loadYearSelectFromLocalStorage() {
   // Retrieve magasins data from local storage
@@ -288,7 +285,7 @@ function populateTableData(magasins) {
 }
 
 // Function to classify magasins by CA range
-function classifyMagasinsByRange(magasins) {
+function classifyMagasinsByRange(magasins, selectedYear) {
   const ranges = [
     { label: "[33,39[", min: 3300000, max: 3900000 },
     { label: "[39,45[", min: 3900000, max: 4500000 },
@@ -302,21 +299,19 @@ function classifyMagasinsByRange(magasins) {
   magasins.forEach((magasin) => {
     magasin.MagasinDetails.forEach((detail) => {
       const ca = parseInt(detail.ca);
+      const year = parseInt(detail.annee);
 
-      // Check if caNumeric is a valid number
-      if (isNaN(ca)) {
-        console.warn(`Invalid CA value: ${ca}`);
-        return; // Skip processing this detail
-      }
+      // Check if ca is a valid number and matches the selected year
+      if (!isNaN(ca) && year === selectedYear) {
+        // Find the range index for the current CA
+        for (let i = 0; i < ranges.length; i++) {
+          const { min, max } = ranges[i];
 
-      // Find the range index for the current CA
-      for (let i = 0; i < ranges.length; i++) {
-        const { min, max } = ranges[i];
-
-        // Check if CA falls within the current range
-        if (ca >= min && ca < max) {
-          frequencies[i]++;
-          break; // Exit the loop once the range is found
+          // Check if CA falls within the current range
+          if (ca >= min && ca < max) {
+            frequencies[i]++;
+            break; // Exit the loop once the range is found
+          }
         }
       }
     });
@@ -328,10 +323,18 @@ function classifyMagasinsByRange(magasins) {
 }
 
 // Function to display bar chart using Chart.js Chiffre d'affaires
+// Function to display bar chart using Chart.js for magasins classified by CA range
 function displayBarChartCA(frequencies) {
-  const ranges = ["[33,39]", "[39,45]", "[45,51]", "[51,57]", "[57,63]"];
+  const ranges = ["[33,39[", "[39,45[", "[45,51[", "[51,57[", "[57,63["];
 
-  const ctx = document.getElementById("myChartCA").getContext("2d");
+  const canvas = document.getElementById("myChartCA");
+  const ctx = canvas.getContext("2d");
+
+  // Check if a chart instance already exists
+  if (Chart.getChart(canvas)) {
+    Chart.getChart(canvas).destroy(); // Destroy the existing chart
+  }
+
   new Chart(ctx, {
     type: "bar",
     data: {
