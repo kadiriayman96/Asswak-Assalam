@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Qjouter un magasin</title>
+    <title>Ajouter un magasin</title>
     <link rel="icon" type="image/png" href="img/fav-icon.webp" />
     <link
       rel="stylesheet"
@@ -53,10 +53,10 @@
 
             <ul class="collapse list-unstyled" id="pageSubmenu">
               <li>
-                <a href="#">Liste des Magasins</a>
+                <a href="liste-des-magasins.html">Liste des Magasins</a>
               </li>
               <li>
-                <a href="#">Ajouter un Magasin</a>
+                <a href="ajouter-magasin.html">Ajouter un Magasin</a>
               </li>
             </ul>
           </li>
@@ -101,10 +101,10 @@
                   <a class="nav-link" href="#">Dashboard Analytics</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Liste des Magasins</a>
+                  <a class="nav-link" href="liste-des-magasins.html">Liste des Magasins</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Ajouter un magasin</a>
+                  <a class="nav-link" href="ajouter-magasin.html">Ajouter un magasin</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Logout</a>
@@ -118,17 +118,19 @@
         <div class="ajouter-magasin">
           <div class="container container-ajouter"style="width: 90%;">
               <h1 class="titre-ajouter">Ajouter magasin</h1>
-              <div class="form">
+              <form  id="formAdd-magasin">
+                <div class="form" class="formAdd">
                   <div class="row" style="margin-bottom: 20px;">
                       <div class="col-md-6 " >
                           <label for="date" class="form-label">Date de creation</label>
                           <input type="date" class="form-control" placeholder="Date" aria-label="Date" id="date" required>
+                          <div class="error-message" id="date-error"></div> 
                       </div>
                       <div class="col-md-6">
                           <label for="status" class="form-label">Status</label>
                           <select class="form-control" id="status">
-                              <option selected> Actif</option>
-                              <option value="1">Inactif</option>
+                              <option value ="Actif"selected> Actif</option>
+                              <option value="Inactif">Inactif</option>
                           </select>
                       </div>
                   </div>
@@ -136,10 +138,12 @@
                       <div class="col-md-6">
                           <label for="nom" class="form-label">Nom du magasin</label>
                           <input type="text" class="form-control" placeholder="Nom magasin" aria-label="Nom magasin" id="nom" required>
+                          <div class="error-message" id="nom-error"></div>
                       </div>
                       <div class="col-md-6">
                           <label for="NumeroTelephone" class="form-label">Numero de telephone</label>
-                          <input type="text" class="form-control" placeholder="Numero telephone" aria-label="Numero telephone" id="NumeroTelephone" required>
+                          <input type="tel" class="form-control" placeholder="Numero telephone" aria-label="Numero telephone" id="NumeroTelephone" pattern="[0-9]{10}" maxlength="10" required>
+                          <div class="error-message" id="telephone-error"></div>
                       </div>
                   </div>
                   <div class="row"
@@ -151,22 +155,67 @@
                             <option value="Casablanca">Casablanca</option>
                             <option value="Marrakech">Marrakech</option>
                             <option value="Meknes">Meknes</option>
+                            <option value="Berkane">Berkane</option>
                             <option value="Oujda">Oujda</option>
+                            <option value="ELjadida">ELjadida</option>
+                            <option value="Bouznika">Bouznika</option>
+                            <option value="Chefchaouen">Chefchaouen</option>
+                            <option value="Dakhla">Dakhla</option>
+                            <option value="Fes">Fes</option>
+                            <option value="Ifran">Ifran</option>
+                            <option value="Agadir">Agadir</option>
+                            <option value="Martil">Martil</option>
                           </select>
                       </div>
                       <div class="col-md-6">
                           <label for="surface" class="form-label">Surface</label>
                           <input type="number" class="form-control" placeholder="surface m²" aria-label="Last name" id="surface" required>
+                          <div class="error-message" id="surface-error"></div> 
                       </div>
                   </div>
                   <div class="row" style="margin-bottom: 20px;">
                       <div class="col-md-12">
                           <label for="adresse" class="form-label">Address</label>
-                          <input type="text" class="form-control" placeholder="Adresse" aria-label="Adresse" id="adresse">
+                          <input type="text" class="form-control" placeholder="Adresse" aria-label="Adresse" id="adresse" required>
+                          <div class="error-message" id="adresse-error"></div>
                       </div>
                   </div>
+                  <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-md-12">
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-ajouter">Ajouter</button>
+                      </div>
+                    </div>
+                   
+
+                    </div>
+                 
               </div>
-              <button class="btn btn-primary btn-ajouter">Ajouter</button>
+              </form>
+            
+              <!-- /**************/ -->
+              <!-- Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title " id="successModalLabel"><img src="./img/logo.png" alt=""></h5>
+      
+      </div>
+      <div class="modal-body text-center">
+        Magasin bien ajouté!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+              
           </div>
       </div>
       

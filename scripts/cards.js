@@ -28,7 +28,8 @@ function displayCards(city) {
                 <span class="material-symbols-outlined " id="icon-card">storefront</span> 
             </div> 
             <div class="v-card-content">
-                <h3 class="v-card-title">${magasin.name}</h3>
+                <h3 class="v-card-title hover-effect">${magasin.name}</h3>
+                
                 <div class="v-card-text">
                     <p class="v-p-card">Date : ${magasin.dateCreation}</p>
                     <p class="v-p-card">Ville : ${magasin.ville}</p>
@@ -41,7 +42,7 @@ function displayCards(city) {
     });
   } else {
     // Afficher un message si aucune donnée n'est disponible
-    cardsContainer.innerHTML = "<p>Aucun magasin trouvé.</p>";
+    cardsContainer.innerHTML = `<p class="p-card">Aucun magasin trouvé.</p>`;
   }
 }
 
@@ -90,7 +91,7 @@ function displayCardsH(city) {
                 <span class="material-symbols-outlined " id="icon-card">storefront</span> 
             </div> 
             <div class="h-card-content">
-                <h3 class="h-card-title">${magasin.name}</h3>
+                <h3 class="h-card-title hover-effect">${magasin.name}</h3>
                 <div class="h-card-text">
                     <p class="h-p-card">Date : ${magasin.dateCreation}</p>
                     <p class="h-p-card">Ville : ${magasin.ville}</p>
@@ -103,7 +104,7 @@ function displayCardsH(city) {
     });
   } else {
     // Afficher un message si aucune donnée n'est disponible
-    cardsContainer.innerHTML = "<p>Aucun magasin trouvé.</p>";
+    cardsContainer.innerHTML = `<p class="p-card">Aucun magasin trouvé.</p>`;
   }
 }
 
