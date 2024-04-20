@@ -87,16 +87,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Dashboard Analytics</a>
+                  <a class="nav-link" href="dashboard-analytics.html"
+                    >Dashboard Analytics</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Liste des Magasins</a>
+                  <a class="nav-link" href="liste-des-magasins.html"
+                    >Liste des Magasins</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Ajouter un magasin</a>
+                  <a class="nav-link" href="ajouter-magasin.html"
+                    >Ajouter un magasin</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Logout</a>
+                  <a class="nav-link" onclick="logout()">Logout</a>
                 </li>
               </ul>
             </div>
@@ -149,14 +155,11 @@
           </li>
           <li class="nav-item" role="presentation">
             <!-- Custom styled select -->
-            <select class="nav-link custom-select" id="year-select" role="tab">
-              <option value="2024" selected>2024</option>
-              <option value="2023">2023</option>
-              <option value="2022">2022</option>
-              <option value="2021">2021</option>
-              <option value="2020">2020</option>
-              <option value="2019">2019</option>
-            </select>
+            <select
+              class="nav-link custom-select"
+              id="year-select"
+              role="tab"
+            ></select>
             <!-- End of custom styled select -->
           </li>
         </ul>
@@ -179,7 +182,7 @@
                         Moyenne arithmétique pondérée
                       </div>
                       <div class="card-body">
-                        <h4 class="card-title">469 000 000 DH</h4>
+                        <h4 class="card-title" id="weighted-mean">---</h4>
                         <p class="card-text">
                           Le Chiffre d'affaires moyen de tous les magasins
                         </p>
@@ -197,10 +200,10 @@
                     <div class="card-data">
                       <div class="card-header">Mode</div>
                       <div class="card-body">
-                        <h4 class="card-title">476 400 000 DH</h4>
+                        <h4 class="card-title" id="mode-value">---</h4>
                         <p class="card-text">
                           Le chiffre d'affaires réalisé par le plus grand nombre
-                          de magasins est 4764000 dhs
+                          de magasins est <span id="mode-value-text">----</span>
                         </p>
                       </div>
                     </div>
@@ -216,11 +219,12 @@
                     <div class="card-data">
                       <div class="card-header">Médiane</div>
                       <div class="card-body">
-                        <h4 class="card-title">476 400 000 DH</h4>
+                        <h4 class="card-title" id="median-value">---</h4>
                         <p class="card-text">
                           50% des magasins réalisent un Chiffre d'affaires
-                          inférieur à 4700000dhs et par conséquent 50% d'entre
-                          eux réalisent un CA supérieur à ce résultat
+                          inférieur à <span id="median-value-text">----</span>,
+                          et par conséquent 50% d'entre eux réalisent un CA
+                          supérieur à ce résultat
                         </p>
                       </div>
                     </div>
@@ -238,13 +242,16 @@
                         Écart-type et coefficient de variation
                       </div>
                       <div class="card-body">
-                        <h4 class="card-title">13,1%</h4>
+                        <h4 class="card-title" id="ecart-type">----</h4>
                         <p class="card-text">
                           L'écart-type montre que les CA des magasins s'écartent
-                          en moyenne de 610000dhs, et le coefficient de
-                          variation est de 0,131 ce qui signifie que l'écart
-                          type représente 13,1% de la moyenne, donc la plupart
-                          des CA sont centrés autour du CA moyen
+                          en moyenne de
+                          <span id="median-type-texts">----</span>, et le
+                          coefficient de variation est de
+                          <span id="coefficient-value">----</span> ce qui
+                          signifie que l'écart type représente
+                          <span id="ecart-type-text">----</span> de la moyenne,
+                          donc la plupart des CA sont centrés autour du CA moyen
                         </p>
                       </div>
                     </div>
