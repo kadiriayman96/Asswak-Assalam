@@ -120,15 +120,15 @@
                     <div class="magasi-info">
                       <div class="magasin-name">
                         <h4>Magasin:</h4>
-                        <p>Sidi Maarouf</p>
+                        <p id="magsin-nam">Sidi Maarouf</p>
                       </div>
                       <div class="magasin-city">
                         <h4>Ville:</h4>
-                        <p>Casablanca</p>
+                        <p id="magasin-vil">Casablanca</p>
                       </div>
                       <div class="open-date">
                         <h4>Date d’ouverture:</h4>
-                        <p>2005</p>
+                        <p id="magasin-dt">2005</p>
                       </div>
                     </div>
                     <div class="cardLogo">
@@ -143,7 +143,7 @@
                 <div class="col-lg-6" id="btnDb">
                   <div class="add-btn">
                     <div class="btn-ajou">
-                      <p>Ajouter Magasin</p>
+                      <p>Ajouter Detail</p>
                     </div>
                   </div>
                 </div>
@@ -160,110 +160,10 @@
                       <th>CA</th>
                       <th>Effectifs</th>
                       <th>Surface</th>
-                      <th>Action a fair</th>
+                      <th>Action a faire</th>
                     </tr>
                   </thead>
                   <tbody class="pad-tbl">
-                    <tr>
-                      <td>2023</td>
-                      <td>320000000</td>
-                      <td>500</td>
-                      <td>900m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2022</td>
-                      <td>450000000</td>
-                      <td>400</td>
-                      <td>800m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2022</td>
-                      <td>450000000</td>
-                      <td>400</td>
-                      <td>800m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2022</td>
-                      <td>450000000</td>
-                      <td>400</td>
-                      <td>800m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2022</td>
-                      <td>450000000</td>
-                      <td>400</td>
-                      <td>800m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2022</td>
-                      <td>450000000</td>
-                      <td>400</td>
-                      <td>800m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2022</td>
-                      <td>450000000</td>
-                      <td>400</td>
-                      <td>800m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2021</td>
-                      <td>430000000</td>
-                      <td>400</td>
-                      <td>500m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2020</td>
-                      <td>50000000</td>
-                      <td>200</td>
-                      <td>500m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2019</td>
-                      <td>210000000</td>
-                      <td>150</td>
-                      <td>500m</td>
-                      <td class="actionMD">
-                        <div class="add">Modifier</div>
-                        <div class="delete">Supprimer</div>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -281,19 +181,19 @@
               <form id="addModal-form">
                   <div class="inputContainer">
                       <label>Année</label>
-                      <input type="text" placeholder="2024" required>
+                      <input type="text" placeholder="2024" id="annee" required>
                   </div>
                   <div class="inputContainer">
                       <label>CA</label>
-                      <input type="text" placeholder="Chiffre d’affaires" required>
+                      <input type="text" placeholder="Chiffre d’affaires" id="ca" required>
                   </div>
                   <div class="inputContainer">
                       <label>Effectifs</label>
-                      <input type="text" placeholder="420" required>
+                      <input type="text" placeholder="420" id="effectifs" required>
                   </div>
                   <div class="inputContainer">
                       <label>Surface</label>
-                      <input type="text" placeholder="900 m²" required>
+                      <input type="text" placeholder="900 m²" id="surface" required>
                   </div>
                   <div class="inputContainer" id="submit-btn">
                       <button type="submit">Ajouter</button>
@@ -312,19 +212,19 @@
               <form id="updateModal-form">
                   <div class="inputContainer">
                       <label>Année</label>
-                      <input type="text" placeholder="2024" required>
+                      <input type="text" placeholder="2024" id="update-annee" required>
                   </div>
                   <div class="inputContainer">
                       <label>CA</label>
-                      <input type="text" placeholder="Chiffre d’affaires" required>
+                      <input type="text" placeholder="Chiffre d’affaires" id="update-ca" required>
                   </div>
                   <div class="inputContainer">
                       <label>Effectifs</label>
-                      <input type="text" placeholder="420" required>
+                      <input type="text" placeholder="420" id="update-effectifs" required>
                   </div>
                   <div class="inputContainer">
                       <label>Surface</label>
-                      <input type="text" placeholder="900 m²" required>
+                      <input type="text" placeholder="900 m²" id="update-surface" required>
                   </div>
                   <div class="inputContainer" id="submit-btn">
                       <button type="submit">Modifer</button>
