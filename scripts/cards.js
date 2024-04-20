@@ -53,7 +53,7 @@ function displayCards(city) {
     });
   } else {
     // Afficher un message si aucune donnée n'est disponible
-    cardsContainer.innerHTML = "<p>Aucun magasin trouvé.</p>";
+    cardsContainer.innerHTML = `<p class="p-card">Aucun magasin trouvé.</p>`;
   }
 }
 
@@ -98,21 +98,20 @@ function displayCardsH(city) {
 
       // Contenu de la carte
       card.innerHTML = `
-          <div class="h-img-card">
-              <span class="material-symbols-outlined " id="icon-card">storefront</span> 
-          </div> 
-          <div class="h-card-content">
-              <!-- Wrap the title with an anchor tag -->
-              <a href="magasine-details.html?id=${magasin.Id}" class="card-title">
+            <div class="h-img-card">
+                <span class="material-symbols-outlined " id="icon-card">storefront</span> 
+            </div> 
+            <div class="h-card-content">
+                <a href="magasine-details.html?id=${magasin.Id}" class="card-title">
                   <h3 class="h-card-title hover-effect">${magasin.name}</h3>
               </a>
-              <div class="h-card-text">
-                  <p class="h-p-card">Date : ${magasin.dateCreation}</p>
-                  <p class="h-p-card">Ville : ${magasin.ville}</p>
-                  <p class="h-p-card">Surface : ${magasin.surface} m²</p>
-              </div>
-          </div>
-      `;
+                <div class="h-card-text">
+                    <p class="h-p-card">Date : ${magasin.dateCreation}</p>
+                    <p class="h-p-card">Ville : ${magasin.ville}</p>
+                    <p class="h-p-card">Surface : ${magasin.surface} m²</p>
+                </div>
+            </div>
+            `;
       // Ajouter la carte au conteneur
       cardsContainer.appendChild(card);
 
@@ -129,7 +128,7 @@ function displayCardsH(city) {
     });
   } else {
     // Afficher un message si aucune donnée n'est disponible
-    cardsContainer.innerHTML = "<p>Aucun magasin trouvé.</p>";
+    cardsContainer.innerHTML = `<p class="p-card">Aucun magasin trouvé.</p>`;
   }
 }
 

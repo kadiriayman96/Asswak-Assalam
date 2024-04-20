@@ -13,11 +13,11 @@
 .container-ajouter {
   display: flex;
   flex-direction: column;
-}
 
+  margin-top: 3%;
+}
 .btn-ajouter {
-  align-self: center;
-  padding: 7px 40px;
+   padding: 7px 40px; 
   background-color: var(--button-color);
   color: white;
   border: none;
@@ -250,38 +250,77 @@ margin-left: 8px;
   margin-bottom: 3px;
   color: black;
 }
-
-/************/
-/* @media (max-width: 768px) {
-   */
-  /* .v-card {
-    flex: 0 0 calc(50% - 20px);
-    margin-right: 0px;
-  }
-  .h-card {
-    flex: 0 0 calc(50% - 20px);
-    margin-right: 0px;
-  }
-  .tools {
-    margin-left: 30px;
-  } */
-  @media (max-width: 768px) {
-    
-     .v-card {
-      flex: 0 0 calc(50% - 30px);
-    } 
-    .h-card {
-      width: calc(45% - 5px); /* Adjust the width for medium screens */
-    }
-     
-  }
-
+.p-card{
+ margin-left: 40%;
+  font-size: 18px;
+  margin-top: 15px;
+  color: rgb(75, 74, 74);
   
-  @media (max-width: 576px) {  
-    .h-card {
-      width: calc(100% - 5px); /* Adjust the width for small screens */
-    }
+}
+/************/
+.error-message {
+  color: rgba(255, 0, 0, 0.637);
+  font-size: 12px; /* Adjust font size as needed */
+  margin-top: 5px; /* Add some space between the input field and error message */
+  font-weight: bold;
+}
+.hover-effect {
+  cursor: pointer; /* Add cursor pointer */
+  transition: color 0.3s ease; 
+}
+
+.hover-effect:hover {
+  color: var(--secondary-color); /
+}
+
+.h-card {
+  transition: transform 0.3s ease; 
+}
+
+.h-card:hover {
+  transform: scale(1.05); 
+  
+}
+.v-card {
+  transition: transform 0.3s ease; 
+}
+
+.v-card:hover {
+  transform: scale(1.05); 
+ 
+}
+
+/**********************/
+@media (max-width: 992px) {
+  .v-card {
+    flex: 0 0 calc(25% - 0px); 
+  } 
+
+  .h-card {
+    width: calc(45% - 0px); 
   }
+}
+
+@media (max-width: 768px) {
+  .v-card {
+    flex: 0 0 calc(50% - 30px); 
+  } 
+
+  .h-card {
+    width: calc(100% - 5px); 
+  }
+  .btn-ajouter {
+    padding: 7px 40px; 
+   margin-top: 30px;
+   width: 100%;
+ }
+ .titre-ajouter {
+  margin-bottom: 30px;
+  margin-top: 0px;
+  align-self: center;
+  font-size: 25px;
+}
+}
 
 
 
