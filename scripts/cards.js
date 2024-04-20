@@ -29,7 +29,7 @@ function displayCards(city) {
             </div> 
             <div class="v-card-content">
             <a href="magasine-details.html?id=${magasin.Id}" class="card-title">
-              <h3 class="v-card-title">${magasin.name}</h3>
+              <h3 class="v-card-title hover-effect">${magasin.name}</h3>
             </a>
                 <div class="v-card-text">
                     <p class="v-p-card">Date : ${magasin.dateCreation}</p>
@@ -104,7 +104,7 @@ function displayCardsH(city) {
           <div class="h-card-content">
               <!-- Wrap the title with an anchor tag -->
               <a href="magasine-details.html?id=${magasin.Id}" class="card-title">
-                  <h3 class="h-card-title">${magasin.name}</h3>
+                  <h3 class="h-card-title hover-effect">${magasin.name}</h3>
               </a>
               <div class="h-card-text">
                   <p class="h-p-card">Date : ${magasin.dateCreation}</p>
