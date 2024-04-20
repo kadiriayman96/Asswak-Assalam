@@ -1,69 +1,135 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Script to activate Bootstrap tab functionality
-  $(document).ready(function () {
-    $("#myTab a").click(function (e) {
-      e.preventDefault();
-      $(this).tab("show");
-    });
+  // Logout function & Load Admin Name
+  loadAdminName();
+  var logoutButton = document.getElementById("logout-button");
+  logoutButton.addEventListener("click", logout);
+
+  // Load data and populate the dashboard
+  loadDataAndPopulateDashboard();
+});
+
+// logout
+function logout() {
+  localStorage.removeItem("sessionAdmin");
+  window.location.href = "index.html";
+}
+
+//Load admin name
+function loadAdminName() {
+  var sessionAdmin = JSON.parse(localStorage.getItem("sessionAdmin"));
+  if (sessionAdmin) {
+    document.getElementById(
+      "admin-name"
+    ).innerHTML = `Logout <br /> ${sessionAdmin.name}`;
+  } else {
+    window.location.href = "index.html";
+  }
+}
+
+function loadDataAndPopulateDashboard() {
+  // Retrieve magasins from localStorage or initialize an empty array
+  const magasins = JSON.parse(localStorage.getItem("magasins")) || [];
+
+  // Populate charts and table with magasin data
+  populateChartsAndTable(magasins);
+}
+
+function populateChartsAndTable(magasins) {
+  populateTableCA(magasins);
+  populateChiffreAffaireChart(magasins);
+  populateEffectifsChart(magasins);
+  populateSurfaceChart(magasins);
+}
+
+function populateChiffreAffaireChart(magasins) {
+  const labels = magasins.map((magasin) => magasin.name);
+  const data = magasins.map((magasin) => {
+    const latestCA = magasin.MagasinDetails[0].ca;
+    return parseFloat(latestCA.replace(" DH", ""));
   });
 
-  // Script to activate Chart.js
-  const myChartCA = document.getElementById("myChartCA").getContext("2d");
-  new Chart(myChartCA, {
+  const ctx = document.getElementById("myChartCA").getContext("2d");
+  new Chart(ctx, {
     type: "bar",
     data: {
-      labels: ["33,39", "39,45", "45,51", "51,57", "57,63", "63,69"],
+      labels: labels,
       datasets: [
         {
-          label: "Chiffres d'affaires par mois",
-          data: [12, 19, 3, 5, 2, 3],
+          label: "Chiffre d'affaires (DH)",
+          data: data,
+          backgroundColor: "#36A2EB",
           borderWidth: 1,
-          backgroundColor: "#0353A4",
         },
       ],
     },
     options: {
-      // Chart options
       responsive: true,
       maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function (value) {
+              return value.toLocaleString(); // Format y-axis labels
+            },
+          },
+        },
+      },
     },
   });
+}
 
-  const myChartEffectifs = document
-    .getElementById("myChartEffectifs")
-    .getContext("2d");
-  new Chart(myChartEffectifs, {
+function populateEffectifsChart(magasins) {
+  const labels = magasins.map((magasin) => magasin.name);
+  const data = magasins.map((magasin) => magasin.MagasinDetails[0].effectifs);
+
+  const ctx = document.getElementById("myChartEffectifs").getContext("2d");
+  new Chart(ctx, {
     type: "bar",
     data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      labels: labels,
       datasets: [
         {
-          label: "Effectifs par mois",
-          data: [12, 19, 3, 5, 2, 3],
+          label: "Effectifs",
+          data: data,
+          backgroundColor: "#FF6384",
           borderWidth: 1,
         },
       ],
     },
     options: {
-      // Chart options
       responsive: true,
       maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function (value) {
+              return value.toLocaleString(); // Format y-axis labels
+            },
+          },
+        },
+      },
     },
   });
+}
 
-  var myChartSurface = document
-    .getElementById("myChartSurface")
-    .getContext("2d");
+function populateSurfaceChart(magasins) {
+  const labels = magasins.map((magasin) => magasin.name);
+  const data = magasins.map((magasin) => {
+    const latestSurface = magasin.MagasinDetails[0].surface;
+    return parseFloat(latestSurface.replace("m²", ""));
+  });
 
-  new Chart(myChartSurface, {
+  const ctx = document.getElementById("myChartSurface").getContext("2d");
+  new Chart(ctx, {
     type: "doughnut",
     data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      labels: labels,
       datasets: [
         {
-          label: "Surfaces par mois",
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1,
+          label: "Surface (m²)",
+          data: data,
           backgroundColor: [
             "#FF6384",
             "#36A2EB",
@@ -72,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "#9C27B0",
             "#FF9800",
           ],
+          borderWidth: 1,
         },
       ],
     },
@@ -80,4 +147,29 @@ document.addEventListener("DOMContentLoaded", function () {
       maintainAspectRatio: false,
     },
   });
-});
+}
+
+function populateTableCA(magasins) {
+  const tableBody = document.getElementById("table-ca");
+  tableBody.innerHTML = ""; // Clear existing table rows
+
+  magasins.forEach((magasin) => {
+    const statutClass =
+      magasin.status === "Actif" ? "statut-active" : "statut-notactive";
+
+    const row = `
+      <tr>
+        <td>${magasin.name}</td>
+        <td>${magasin.ville}</td>
+        <td>${magasin.numeroTelephone}</td>
+        <td>${magasin.adresse}</td>
+        <td>${magasin.surface} m²</td>
+        <td>
+          <div class="${statutClass}">${magasin.status}</div>
+        </td>
+      </tr>
+    `;
+
+    tableBody.innerHTML += row;
+  });
+}

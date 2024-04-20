@@ -29,7 +29,7 @@
 
         <ul class="list-unstyled components">
           <li>
-            <a href="#">Dashboard Analytics</a>
+            <a href="dashboard-analytics.html">Dashboard Analytics</a>
           </li>
           <li>
             <div class="dropdown">
@@ -42,8 +42,10 @@
                 <span class="material-icons" id="arrow"> expand_more </span>
               </a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li><a href="#">Liste des Magasins</a></li>
-                <li><a href="#">Ajouter un Magasin</a></li>
+                <li>
+                  <a href="liste-des-magasins.html">Liste des Magasins</a>
+                </li>
+                <li><a href="ajouter-magasin.html">Ajouter un Magasin</a></li>
               </ul>
             </div>
           </li>
@@ -52,11 +54,11 @@
           <div class="logout-profile">
             <img src="img/admin-logo.jpg" alt="logo" class="logout-logo" />
             <div>
-              <div class="admin-name">Logout <br />Admin Name</div>
+              <div class="admin-name" id="admin-name"></div>
             </div>
           </div>
           <div class="logout-icon">
-            <span class="material-icons"> logout </span>
+            <span class="material-icons" id="logout-button"> logout </span>
           </div>
         </div>
       </nav>
@@ -253,7 +255,7 @@
                 </div>
                 <div class="col-sm center-things" id="table-space">
                   <div class="table-responsive">
-                    <table class="table table-hover" id="table">
+                    <table class="table table-hover">
                       <thead class="pad-tbl">
                         <tr>
                           <th>Magasin</th>
@@ -264,48 +266,7 @@
                           <th>Status</th>
                         </tr>
                       </thead>
-                      <tbody class="pad-tbl">
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-notactive">Inactif</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-active">Actif</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-notactive">Inactif</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-active">Actif</div>
-                          </td>
-                        </tr>
-                      </tbody>
+                      <tbody class="pad-tbl" id="table-ca"></tbody>
                     </table>
                   </div>
                 </div>
@@ -415,48 +376,7 @@
                           <th>Status</th>
                         </tr>
                       </thead>
-                      <tbody class="pad-tbl">
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-notactive">Inactif</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-active">Actif</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-notactive">Inactif</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-active">Actif</div>
-                          </td>
-                        </tr>
-                      </tbody>
+                      <tbody class="pad-tbl" id="table-effectifs"></tbody>
                     </table>
                   </div>
                 </div>
@@ -564,48 +484,7 @@
                           <th>Status</th>
                         </tr>
                       </thead>
-                      <tbody class="pad-tbl">
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-notactive">Inactif</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-active">Actif</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-notactive">Inactif</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Bouskoura</td>
-                          <td>Casablanca</td>
-                          <td>05 22 69 33 33</td>
-                          <td>169, Bd Hassan 2</td>
-                          <td>300m²</td>
-                          <td>
-                            <div class="statut-active">Actif</div>
-                          </td>
-                        </tr>
-                      </tbody>
+                      <tbody class="pad-tbl" id="table-surface"></tbody>
                     </table>
                   </div>
                 </div>

@@ -309,3 +309,15 @@ ul ul a {
   }
 
 }
+
+.logout-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout-icon:hover {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.1);
+}
