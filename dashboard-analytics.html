@@ -307,7 +307,7 @@
                       </div>
                     </div>
                     <img
-                      src="img/ca-image.png"
+                      src="img/effectif-image.png"
                       alt="chart image"
                       class="card-img"
                     />
@@ -329,7 +329,7 @@
                       </div>
                     </div>
                     <img
-                      src="img/ca-image.png"
+                      src="img/effectif-image.png"
                       alt="chart image"
                       class="card-img"
                     />
@@ -352,7 +352,7 @@
                       </div>
                     </div>
                     <img
-                      src="img/ca-image.png"
+                      src="img/effectif-image.png"
                       alt="chart image"
                       class="card-img"
                     />
@@ -423,14 +423,17 @@
                         Moyenne arithmétique pondérée
                       </div>
                       <div class="card-body">
-                        <h4 class="card-title">740 m²</h4>
+                        <h4 class="card-title" id="weighted-mean-surface">
+                          ---
+                        </h4>
                         <p class="card-text">
-                          La surface moyenne de tous les magasins
+                          Le nombre de surface qui sont dans le moyen de tous
+                          les magasins
                         </p>
                       </div>
                     </div>
                     <img
-                      src="img/ca-image.png"
+                      src="img/surface-image.png"
                       alt="chart image"
                       class="card-img"
                     />
@@ -441,15 +444,16 @@
                     <div class="card-data">
                       <div class="card-header">Mode</div>
                       <div class="card-body">
-                        <h4 class="card-title">930 m²</h4>
+                        <h4 class="card-title" id="mode-value-surface">---</h4>
                         <p class="card-text">
-                          La surface réalisé par le plus grand nombre de
-                          magasins est 930 m²
+                          Le surface qui est dans le plus grand nombre de
+                          magasins est
+                          <span id="mode-value-text-surface">----</span>
                         </p>
                       </div>
                     </div>
                     <img
-                      src="img/ca-image.png"
+                      src="img/surface-image.png"
                       alt="chart image"
                       class="card-img"
                     />
@@ -460,14 +464,19 @@
                     <div class="card-data">
                       <div class="card-header">Médiane</div>
                       <div class="card-body">
-                        <h4 class="card-title">500 m²</h4>
+                        <h4 class="card-title" id="median-value-surface">
+                          ---
+                        </h4>
                         <p class="card-text">
-                          50% des magasins ont une surface inférieur à 500 m²
+                          50% des magasins ont un surface inférieur à
+                          <span id="median-value-text-surface">----</span>, et
+                          par conséquent 50% d'entre ont un surface supérieur à
+                          ce résultat
                         </p>
                       </div>
                     </div>
                     <img
-                      src="img/ca-image.png"
+                      src="img/surface-image.png"
                       alt="chart image"
                       class="card-img"
                     />
@@ -480,18 +489,23 @@
                         Écart-type et coefficient de variation
                       </div>
                       <div class="card-body">
-                        <h4 class="card-title">69.5%</h4>
+                        <h4 class="card-title" id="ecart-type-surface">----</h4>
                         <p class="card-text">
-                          L'écart-type montre que les surfaces des magasins
-                          s'écartent en moyenne de 860 m², et le coefficient de
-                          variation est de 1.69 ce qui signifie que l'écart type
-                          représente 69.5% de la moyenne, donc la plupart des
-                          surfaces sont centrés autour de 500 m²
+                          L'écart-type montre que la surface des magasins
+                          s'écartent en moyenne de
+                          <span id="median-type-texts-surface">----</span>, et
+                          le coefficient de variation est de
+                          <span id="coefficient-value-surface">----</span> ce
+                          qui signifie que l'écart type représente
+                          <span id="ecart-type-text-surface">----</span> de la
+                          moyenne, donc la plupart des surfaces sont centrés
+                          autour de surface moyenne.
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="col-sm center-things" id="chart-space">
                   <canvas id="myChartSurface" class="myChart"></canvas>
                 </div>

@@ -25,18 +25,26 @@ document.addEventListener("DOMContentLoaded", function () {
       ? parseInt(selectedYearElement.value)
       : new Date().getFullYear(); // Use current year if element or value is not available
 
-    // Calculate and display statistical metrics based on the selected year
+    // Calculate and display Chiffre d'affaires statistics
     displayWeightedArithmeticMean(magasins, selectedYear);
     displayMode(magasins, selectedYear);
     displayMedian(magasins, selectedYear);
     displayStandardDeviation(magasins, selectedYear);
     displayCoefficientOfVariation(magasins, selectedYear);
 
+    // Calculate and display Effectifs statistics
     displayWeightedArithmeticMeanEffectifs(magasins, selectedYear);
     displayModeEffectifs(magasins, selectedYear);
     displayMedianEffectifs(magasins, selectedYear);
     displayStandardDeviationEffectifs(magasins, selectedYear);
     displayCoefficientOfVariationEffectifs(magasins, selectedYear);
+
+    // Calculate and display Surface statistics
+    displayWeightedArithmeticMeanSurface(magasins, selectedYear);
+    displayModeSurface(magasins, selectedYear);
+    displayMedianSurface(magasins, selectedYear);
+    displayStandardDeviationSurface(magasins, selectedYear);
+    displayCoefficientOfVariationSurface(magasins, selectedYear);
 
     // Load and display chart data for Chiffre d'affaires
     const frequenciesCA = classifyMagasinsByRange(magasins, selectedYear);
@@ -753,6 +761,7 @@ function displayBarChartSurface(frequencies) {
             "rgba(153, 102, 255, 1)",
           ],
           borderWidth: 1,
+          hoverOffset: 15,
         },
       ],
     },
@@ -767,7 +776,7 @@ function displayBarChartSurface(frequencies) {
           display: true,
           text: "Surface des magasins",
           font: {
-            size: 16,
+            size: 14,
           },
         },
         tooltip: {
@@ -782,4 +791,170 @@ function displayBarChartSurface(frequencies) {
   });
 }
 
-//
+// Calculate Weighted Arithmetic Mean for Surface
+function calculateWeightedArithmeticMeanSurface(magasins, year) {
+  let totalSurface = 0;
+  let totalWeight = 0;
+
+  magasins.forEach((magasin) => {
+    var details = magasin.MagasinDetails.find(
+      (detail) => parseInt(detail.annee) === year
+    );
+
+    if (details) {
+      const surface = parseInt(details.surface);
+      const weight = parseInt(details.ca);
+      totalSurface += surface * weight;
+      totalWeight += weight;
+    }
+  });
+
+  if (totalWeight === 0) return 0; // Handle division by zero
+
+  return totalSurface / totalWeight;
+}
+
+// Display Weighted Arithmetic Mean for Surface
+function displayWeightedArithmeticMeanSurface(magasins, year) {
+  const mean = calculateWeightedArithmeticMeanSurface(magasins, year);
+  const meanElement = document.getElementById("weighted-mean-surface");
+  if (meanElement) {
+    meanElement.innerHTML = `${mean.toFixed(2)} m²`;
+  }
+}
+
+// Calculate Mode for Surface
+function calculateModeSurface(magasins, year) {
+  const surfaceValues = magasins
+    .flatMap((magasin) =>
+      magasin.MagasinDetails.filter((detail) => parseInt(detail.annee) === year)
+    )
+    .map((detail) => parseInt(detail.surface));
+
+  const counts = {};
+  surfaceValues.forEach((value) => {
+    counts[value] = (counts[value] || 0) + 1;
+  });
+
+  let mode = null;
+  let maxCount = 0;
+  Object.entries(counts).forEach(([value, count]) => {
+    if (count > maxCount) {
+      maxCount = count;
+      mode = parseInt(value);
+    }
+  });
+
+  return mode;
+}
+
+// Display Mode for Surface
+function displayModeSurface(magasins, year) {
+  const mode = calculateModeSurface(magasins, year);
+  const modeElement = document.getElementById("mode-value-surface");
+  const modeTextElement = document.getElementById("mode-value-text-surface");
+  if (modeElement) {
+    modeElement.textContent = `${mode} m²`;
+  }
+  if (modeTextElement) {
+    modeTextElement.textContent = `${mode} m²`;
+  }
+}
+
+// Calculate Median for Surface
+function calculateMedianSurface(magasins, year) {
+  const surfaceValues = magasins
+    .flatMap((magasin) =>
+      magasin.MagasinDetails.filter((detail) => parseInt(detail.annee) === year)
+    )
+    .map((detail) => parseInt(detail.surface));
+
+  surfaceValues.sort((a, b) => a - b);
+
+  const mid = Math.floor(surfaceValues.length / 2);
+  if (surfaceValues.length % 2 === 0) {
+    return (surfaceValues[mid - 1] + surfaceValues[mid]) / 2;
+  } else {
+    return surfaceValues[mid];
+  }
+}
+
+// Display Median for Surface
+function displayMedianSurface(magasins, year) {
+  const median = calculateMedianSurface(magasins, year);
+  const medianElement = document.getElementById("median-value-surface");
+  const medianTextElement = document.getElementById(
+    "median-value-text-surface"
+  );
+  const medianTypeText = document.getElementById("median-type-texts-surface");
+
+  if (medianElement) {
+    medianElement.textContent = `${median.toFixed(2)} m²`;
+  }
+  if (medianTextElement) {
+    medianTextElement.textContent = `${median.toFixed(2)} m²`;
+  }
+  if (medianTypeText) {
+    medianTypeText.textContent = `${median.toFixed(2)} m²`;
+  }
+}
+
+// Calculate Standard Deviation for Surface
+function calculateStandardDeviationSurface(magasins, year) {
+  const surfaceValues = magasins
+    .flatMap((magasin) =>
+      magasin.MagasinDetails.filter((detail) => parseInt(detail.annee) === year)
+    )
+    .map((detail) => parseInt(detail.surface));
+
+  const mean = calculateWeightedArithmeticMeanSurface(magasins, year);
+  const squaredDifferences = surfaceValues.map((value) => (value - mean) ** 2);
+  const variance =
+    squaredDifferences.reduce((acc, val) => acc + val, 0) /
+    surfaceValues.length;
+
+  return Math.sqrt(variance);
+}
+
+// Display Standard Deviation for Surface
+function displayStandardDeviationSurface(magasins, year) {
+  const standardDeviation = calculateStandardDeviationSurface(magasins, year);
+  const standardDeviationElement =
+    document.getElementById("ecart-type-surface");
+  const ecartTypeTextElement = document.getElementById(
+    "ecart-type-text-surface"
+  );
+  if (standardDeviationElement) {
+    standardDeviationElement.innerHTML = `${standardDeviation.toFixed(2)} m²`;
+  }
+  if (ecartTypeTextElement) {
+    ecartTypeTextElement.innerHTML = `${standardDeviation.toFixed(2)} m²`;
+  }
+}
+
+// Calculate Coefficient of Variation for Surface
+function calculateCoefficientOfVariationSurface(magasins, year) {
+  const mean = calculateWeightedArithmeticMeanSurface(magasins, year);
+  const standardDeviation = calculateStandardDeviationSurface(magasins, year);
+
+  if (mean === 0) return 0; // Handle division by zero
+
+  return (standardDeviation / mean) * 100;
+}
+
+// Display Coefficient of Variation for Surface
+function displayCoefficientOfVariationSurface(magasins, year) {
+  const coefficientOfVariation = calculateCoefficientOfVariationSurface(
+    magasins,
+    year
+  );
+  const coefficientValueElement = document.getElementById(
+    "coefficient-value-surface"
+  );
+
+  if (coefficientValueElement) {
+    coefficientValueElement.textContent = `${coefficientOfVariation.toFixed(
+      3
+    )} %`;
+  }
+}
