@@ -925,10 +925,10 @@ function displayStandardDeviationSurface(magasins, year) {
     "ecart-type-text-surface"
   );
   if (standardDeviationElement) {
-    standardDeviationElement.innerHTML = `${standardDeviation.toFixed(2)} m²`;
+    standardDeviationElement.innerHTML = `${standardDeviation.toFixed(2)} %`;
   }
   if (ecartTypeTextElement) {
-    ecartTypeTextElement.innerHTML = `${standardDeviation.toFixed(2)} m²`;
+    ecartTypeTextElement.innerHTML = `${standardDeviation.toFixed(2)} %`;
   }
 }
 
