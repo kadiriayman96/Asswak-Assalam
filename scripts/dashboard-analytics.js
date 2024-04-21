@@ -48,6 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
       selectedYear
     );
     displayBarChartEffectifs(frequenciesEffectifs);
+
+    // Load and display chart data for Surface
+    const frequenciesSurface = classifyMagasinsBySurfaceRange(
+      magasins,
+      selectedYear
+    );
+    displayBarChartSurface(frequenciesSurface);
   }
 
   // Attach change event listener to the year-select element
@@ -144,16 +151,16 @@ function populateTableData(magasins) {
   });
 }
 
-// <--------------------------- Chiffre d'affaires Fucntions ----------------------------->
+// <--------------------------- Chiffre d'affaires Functions ----------------------------->
 
 // Function to classify magasins by Chiffre d'affaires range
 function classifyMagasinsByRange(magasins, selectedYear) {
   const ranges = [
-    { label: "[33,39[", min: 3300000, max: 3900000 },
-    { label: "[39,45[", min: 3900000, max: 4500000 },
-    { label: "[45,51[", min: 4500000, max: 5100000 },
-    { label: "[51,57[", min: 5100000, max: 5700000 },
-    { label: "[57,63[", min: 5700000, max: 6300000 },
+    { label: "[39<]", min: 0, max: 3900000 },
+    { label: "[39,45]", min: 3900000, max: 4500000 },
+    { label: "[45,51]", min: 4500000, max: 5100000 },
+    { label: "[51,57]", min: 5100000, max: 5700000 },
+    { label: "[57>]", min: 5700000, max: Infinity },
   ];
 
   const frequencies = new Array(ranges.length).fill(0);
@@ -180,6 +187,66 @@ function classifyMagasinsByRange(magasins, selectedYear) {
   });
 
   return frequencies;
+}
+
+// Function to display bar chart using Chart.js for Chiffre d'affaires
+function displayBarChartCA(frequencies) {
+  const ranges = ["[33<]", "[39,45]", "[45,51]", "[51,57]", "[57>]"];
+
+  const canvas = document.getElementById("myChartCA");
+  const ctx = canvas.getContext("2d");
+
+  // Check if a chart instance already exists
+  if (Chart.getChart(canvas)) {
+    Chart.getChart(canvas).destroy(); // Destroy the existing chart
+  }
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ranges,
+      datasets: [
+        {
+          label: "Fréquence par rapport au CA",
+          data: frequencies,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.5)",
+            "rgba(54, 162, 235, 0.5)",
+            "rgba(255, 206, 86, 0.5)",
+            "rgba(75, 192, 192, 0.5)",
+            "rgba(153, 102, 255, 0.5)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: "Fréquence",
+          },
+        },
+        x: {
+          title: {
+            display: true,
+            text: "CA",
+          },
+        },
+      },
+    },
+  });
 }
 
 // Function to calculate Weighted Arithmetic Mean (Moyenne arithmétique pondérée) for Chiffre d'affaires
@@ -300,12 +367,13 @@ function calculateStandardDeviation(magasins, year) {
   const variance =
     squaredDifferences.reduce((acc, val) => acc + val, 0) / caValues.length;
 
-  return Math.sqrt(variance);
+  return Math.sqrt(variance) / 10000;
 }
 
 // Function to display Standard Deviation on the webpage
 function displayStandardDeviation(magasins, year) {
   const standardDeviation = calculateStandardDeviation(magasins, year);
+
   const standardDeviationElement = document.getElementById("ecart-type");
   if (standardDeviationElement) {
     standardDeviationElement.innerHTML = `${standardDeviation.toFixed(2)} %`;
@@ -333,82 +401,23 @@ function displayCoefficientOfVariation(magasins, year) {
 
   if (coefficientValueElement) {
     coefficientValueElement.textContent = `${coefficientOfVariation.toFixed(
-      3
+      5
     )}`;
   }
   if (ecartTypeTextElement) {
-    ecartTypeTextElement.textContent = `${coefficientOfVariation.toFixed(3)} %`;
+    ecartTypeTextElement.textContent = `${coefficientOfVariation.toFixed(5)} %`;
   }
 }
-// Function to display bar chart using Chart.js for Chiffre d'affaires
-function displayBarChartCA(frequencies) {
-  const ranges = ["[33,39]", "[39,45]", "[45,51]", "[51,57]", "[57,63]"];
 
-  const canvas = document.getElementById("myChartCA");
-  const ctx = canvas.getContext("2d");
-
-  // Check if a chart instance already exists
-  if (Chart.getChart(canvas)) {
-    Chart.getChart(canvas).destroy(); // Destroy the existing chart
-  }
-
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ranges,
-      datasets: [
-        {
-          label: "Fréquence par rapport au CA",
-          data: frequencies,
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.5)",
-            "rgba(54, 162, 235, 0.5)",
-            "rgba(255, 206, 86, 0.5)",
-            "rgba(75, 192, 192, 0.5)",
-            "rgba(153, 102, 255, 0.5)",
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-          ],
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: "Fréquence",
-          },
-        },
-        x: {
-          title: {
-            display: true,
-            text: "CA",
-          },
-        },
-      },
-    },
-  });
-}
-
-// <--------------------------- Effectifs Fucntions ----------------------------->
+// <--------------------------- Effectifs Functions ----------------------------->
 
 // Function to classify magasins by Effectifs range
 function classifyMagasinsByEffectifsRange(magasins, selectedYear) {
   const ranges = [
-    { label: "10-20", min: 10, max: 20 },
-    { label: "21-30", min: 21, max: 30 },
-    { label: "31-40", min: 31, max: 40 },
-    { label: "41-50", min: 41, max: 50 },
+    { label: "<25", min: 0, max: 25 },
+    { label: "25-50", min: 25, max: 50 },
+    { label: "50-80", min: 50, max: 80 },
+    { label: "80>", min: 80, max: Infinity },
   ];
 
   const frequencies = new Array(ranges.length).fill(0);
@@ -435,6 +444,64 @@ function classifyMagasinsByEffectifsRange(magasins, selectedYear) {
   });
 
   return frequencies;
+}
+
+// Function to display bar chart using Chart.js for Effectifs
+function displayBarChartEffectifs(frequencies) {
+  const ranges = ["<25", "25-50", "55-80", "80>"];
+
+  const canvas = document.getElementById("myChartEffectifs");
+  const ctx = canvas.getContext("2d");
+
+  // Check if a chart instance already exists
+  if (Chart.getChart(canvas)) {
+    Chart.getChart(canvas).destroy(); // Destroy the existing chart
+  }
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ranges,
+      datasets: [
+        {
+          label: "Fréquence par rapport aux Personnes",
+          data: frequencies,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.5)",
+            "rgba(54, 162, 235, 0.5)",
+            "rgba(255, 206, 86, 0.5)",
+            "rgba(75, 192, 192, 0.5)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: "Fréquence",
+          },
+        },
+        x: {
+          title: {
+            display: true,
+            text: "Personnes",
+          },
+        },
+      },
+    },
+  });
 }
 
 //Calculate Weighted Arithmetic Mean for Effectifs
@@ -607,11 +674,55 @@ function displayCoefficientOfVariationEffectifs(magasins, year) {
   }
 }
 
-// Function to display bar chart using Chart.js for Effectifs
-function displayBarChartEffectifs(frequencies) {
-  const ranges = ["10-20", "21-30", "31-40", "41-50"];
+// <------- Surface Functions ------->
 
-  const canvas = document.getElementById("myChartEffectifs");
+// Function to classify magasins by Surface range
+function classifyMagasinsBySurfaceRange(magasins, selectedYear) {
+  const ranges = [
+    { label: "<400 m²", min: 0, max: 399 },
+    { label: "400-800 m²", min: 400, max: 799 },
+    { label: "800-1200 m²", min: 800, max: 1199 },
+    { label: "1200-1600 m²", min: 1200, max: 1599 },
+    { label: ">1600 m²", min: 1600, max: Infinity },
+  ];
+
+  const frequencies = new Array(ranges.length).fill(0);
+
+  magasins.forEach((magasin) => {
+    magasin.MagasinDetails.forEach((detail) => {
+      const surface = parseInt(detail.surface);
+      const year = parseInt(detail.annee);
+
+      // Check if surface is a valid number and matches the selected year
+      if (!isNaN(surface) && year === selectedYear) {
+        // Find the range index for the current surface
+        for (let i = 0; i < ranges.length; i++) {
+          const { min, max } = ranges[i];
+
+          // Check if surface falls within the current range
+          if (surface >= min && surface <= max) {
+            frequencies[i]++;
+            break; // Exit the loop once the range is found
+          }
+        }
+      }
+    });
+  });
+
+  return frequencies;
+}
+
+//Display Bar Chart for Surface
+function displayBarChartSurface(frequencies) {
+  const ranges = [
+    "<400 m²",
+    "400-800 m²",
+    "800-1200 m²",
+    "1200-1600 m²",
+    "1600 m²",
+  ];
+
+  const canvas = document.getElementById("myChartSurface");
   const ctx = canvas.getContext("2d");
 
   // Check if a chart instance already exists
@@ -620,24 +731,26 @@ function displayBarChartEffectifs(frequencies) {
   }
 
   new Chart(ctx, {
-    type: "bar",
+    type: "doughnut",
     data: {
       labels: ranges,
       datasets: [
         {
-          label: "Fréquence par rapport aux Effectifs",
+          label: "Fréquence par rapport à la Surface",
           data: frequencies,
           backgroundColor: [
             "rgba(255, 99, 132, 0.5)",
             "rgba(54, 162, 235, 0.5)",
             "rgba(255, 206, 86, 0.5)",
             "rgba(75, 192, 192, 0.5)",
+            "rgba(153, 102, 255, 0.5)",
           ],
           borderColor: [
             "rgba(255, 99, 132, 1)",
             "rgba(54, 162, 235, 1)",
             "rgba(255, 206, 86, 1)",
             "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
           ],
           borderWidth: 1,
         },
@@ -646,21 +759,27 @@ function displayBarChartEffectifs(frequencies) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: "Fréquence",
+      plugins: {
+        legend: {
+          position: "bottom",
+        },
+        title: {
+          display: true,
+          text: "Surface des magasins",
+          font: {
+            size: 16,
           },
         },
-        x: {
-          title: {
-            display: true,
-            text: "Effectifs",
+        tooltip: {
+          callbacks: {
+            label: function (tooltipItem) {
+              return `${tooltipItem.label} : ${tooltipItem.raw}`;
+            },
           },
         },
       },
     },
   });
 }
+
+//
