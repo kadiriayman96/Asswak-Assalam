@@ -16,19 +16,22 @@
 
   margin-top: 3%;
 }
+
 .btn-ajouter {
-   padding: 7px 40px; 
+  padding: 7px 40px;
   background-color: var(--button-color);
   color: white;
   border: none;
   border-radius: 0px;
   margin-top: 30px;
 }
+
 .titre-ajouter {
   margin-bottom: 60px;
   margin-top: 20px;
   align-self: center;
 }
+
 .v-img-card {
   height: 50%;
   padding-bottom: 6px;
@@ -36,9 +39,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(img/6f80b6a5-41db-4465-abae-18e5526862f9.webp);
+  background-image: url(../img/6f80b6a5-41db-4465-abae-18e5526862f9.webp);
   background-size: cover;
 }
+
 .h-img-card {
   /* height: 30%; */
   padding-bottom: 6px;
@@ -47,9 +51,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(img/6f80b6a5-41db-4465-abae-18e5526862f9.webp);
+  background-image: url(../img/6f80b6a5-41db-4465-abae-18e5526862f9.webp);
   background-size: cover;
 }
+
 input,
 select {
   border-radius: 0px !important;
@@ -62,6 +67,7 @@ select {
   flex-direction: column;
   width: 100%;
 }
+
 .grid-line {
   width: 50%;
   height: 1px;
@@ -69,27 +75,33 @@ select {
   margin-left: 35%;
   margin-top: 15px;
 }
+
 .header-grid {
   display: flex;
   justify-content: space-between;
 }
+
 .grid-view {
   display: flex;
   justify-content: end;
 }
+
 .icon-grid {
   margin-bottom: 30px;
 }
+
 .title-card {
   text-align: center;
   margin: 5px;
   margin-bottom: 50px;
 }
+
 /************hedear ********/
 .title-card p {
   color: rgb(75, 74, 74);
   font-size: 12px;
 }
+
 /****** v-cards ****/
 
 #cards-icon {
@@ -132,11 +144,12 @@ select {
   margin-top: 25px;
   width: 100%;
   gap: 60px;
- 
+
 }
 
 .v-card {
-  width: calc(23% - 30px); /* Adjust the width to show 4 cards per row */
+  width: calc(23% - 30px);
+  /* Adjust the width to show 4 cards per row */
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1);
   border-radius: 0px;
   display: flex;
@@ -156,11 +169,11 @@ select {
 
 .v-card-title {
   font-size: 1.8rem;
- font-weight: bold;
+  font-weight: bold;
   margin-bottom: 15px;
   align-items: center;
   margin-top: 0px;
-  
+
 }
 
 .v-card-text {
@@ -182,11 +195,13 @@ select {
   height: 70px;
   margin: 15px;
 }
+
 .v-p-card {
   margin-bottom: 3px;
   color: black;
 
 }
+
 .tools {
   display: flex;
   width: 100%;
@@ -197,7 +212,7 @@ select {
   padding: 5px;
   font-size: 16px;
   border: 1px solid var(--button-color);
-} 
+}
 
 
 /*************/
@@ -205,11 +220,13 @@ select {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: calc(30% - 5px); /* Adjust the width to show 4 cards per row */
+  width: calc(30% - 5px);
+  /* Adjust the width to show 4 cards per row */
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1);
   border-radius: 0px;
   background-color: white;
-  height: 150px; /* Adjust the height */
+  height: 150px;
+  /* Adjust the height */
 
   /***************/
 }
@@ -226,8 +243,9 @@ select {
 
 .h-card-content {
   padding: 10px;
-margin-left: 8px;
-  flex: 1; /* Adjust the size of the content area */
+  margin-left: 8px;
+  flex: 1;
+  /* Adjust the size of the content area */
 }
 
 .h-card-title {
@@ -250,77 +268,83 @@ margin-left: 8px;
   margin-bottom: 3px;
   color: black;
 }
-.p-card{
- margin-left: 40%;
+
+.p-card {
+  margin-left: 40%;
   font-size: 18px;
   margin-top: 15px;
   color: rgb(75, 74, 74);
-  
+
 }
+
 /************/
 .error-message {
   color: rgba(255, 0, 0, 0.637);
-  font-size: 12px; /* Adjust font size as needed */
-  margin-top: 5px; /* Add some space between the input field and error message */
+  font-size: 12px;
+  /* Adjust font size as needed */
+  margin-top: 5px;
+  /* Add some space between the input field and error message */
   font-weight: bold;
 }
+
 .hover-effect {
-  cursor: pointer; /* Add cursor pointer */
-  transition: color 0.3s ease; 
+  cursor: pointer;
+  /* Add cursor pointer */
+  transition: color 0.3s ease;
 }
 
 .hover-effect:hover {
-  color: var(--secondary-color); /
+  color: var(--secondary-color);/
 }
 
 .h-card {
-  transition: transform 0.3s ease; 
+  transition: transform 0.3s ease;
 }
 
 .h-card:hover {
-  transform: scale(1.05); 
-  
+  transform: scale(1.05);
+
 }
+
 .v-card {
-  transition: transform 0.3s ease; 
+  transition: transform 0.3s ease;
 }
 
 .v-card:hover {
-  transform: scale(1.05); 
- 
+  transform: scale(1.05);
+
 }
 
 /**********************/
 @media (max-width: 992px) {
   .v-card {
-    flex: 0 0 calc(25% - 0px); 
-  } 
+    flex: 0 0 calc(25% - 0px);
+  }
 
   .h-card {
-    width: calc(45% - 0px); 
+    width: calc(45% - 0px);
   }
 }
 
 @media (max-width: 768px) {
   .v-card {
-    flex: 0 0 calc(50% - 30px); 
-  } 
+    flex: 0 0 calc(50% - 30px);
+  }
 
   .h-card {
-    width: calc(100% - 5px); 
+    width: calc(100% - 5px);
   }
+
   .btn-ajouter {
-    padding: 7px 40px; 
-   margin-top: 30px;
-   width: 100%;
- }
- .titre-ajouter {
-  margin-bottom: 30px;
-  margin-top: 0px;
-  align-self: center;
-  font-size: 25px;
+    padding: 7px 40px;
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .titre-ajouter {
+    margin-bottom: 30px;
+    margin-top: 0px;
+    align-self: center;
+    font-size: 25px;
+  }
 }
-}
-
-
-

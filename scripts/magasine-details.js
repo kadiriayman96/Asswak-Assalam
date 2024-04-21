@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Load admin name and check session
+  loadAdminName();
+
+  // Logout functionality
+  const logoutButton = document.getElementById("logout-button");
+  logoutButton.addEventListener("click", logout);
+
   var modal = document.getElementById("addModalBg");
   var modalBtn = document.querySelector(".btn-ajou");
   var updateModal = document.getElementById("updateModalBg");
@@ -11,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var cancelBtn = document.getElementById("cancelBtn");
   // var magasins = JSON.parse(localStorage.getItem("magasins"));
   var magsinNam = document.getElementById("magsin-nam");
-  
+
   cancelBtn.addEventListener("click", function () {
     deleteModal.style.display = "none";
   });
@@ -60,10 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var magasin = magasins.find((magasin) => magasin.Id == magasinId);
   var magsinNam = document.getElementById("magsin-nam");
   var magasin_vil = document.getElementById("magasin-vil");
-  var magasin_dt= document.getElementById("magasin-dt");
-  magsinNam.innerHTML = magasin.name ; 
-  magasin_vil.innerHTML = magasin.ville ; 
-  magasin_dt.innerHTML = magasin.dateCreation; 
+  var magasin_dt = document.getElementById("magasin-dt");
+  magsinNam.innerHTML = magasin.name;
+  magasin_vil.innerHTML = magasin.ville;
+  magasin_dt.innerHTML = magasin.dateCreation;
 
   // Function to generate a random ID
   function generateRandomId(length) {
@@ -242,7 +249,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var magasin = magasins.find((magasin) => magasin.Id == magasinId);
 
     if (magasin && magasin.MagasinDetails) {
-      var detail = magasin.MagasinDetails.find((detail) => detail.id === detailId);
+      var detail = magasin.MagasinDetails.find(
+        (detail) => detail.id === detailId
+      );
 
       if (detail) {
         // Populate the update modal with existing data
@@ -283,3 +292,22 @@ document.addEventListener("DOMContentLoaded", function () {
   var tableBody = document.querySelector("#table tbody");
   tableBody.addEventListener("click", handleUpdateClick);
 });
+
+// Logout function
+function logout() {
+  localStorage.removeItem("sessionAdmin");
+  window.location.href = "index.html"; // Redirect to login page after logout
+}
+
+// Load admin name and validate session
+function loadAdminName() {
+  const sessionAdmin = JSON.parse(localStorage.getItem("sessionAdmin"));
+  if (sessionAdmin) {
+    const adminNameElement = document.getElementById("admin-name");
+    if (adminNameElement) {
+      adminNameElement.innerHTML = `Logout <br /> ${sessionAdmin.name}`;
+    }
+  } else {
+    window.location.href = "index.html"; // Redirect to login page if session is not valid
+  }
+}

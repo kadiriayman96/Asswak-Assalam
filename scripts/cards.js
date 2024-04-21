@@ -56,8 +56,25 @@ function displayCards(city) {
     cardsContainer.innerHTML = `<p class="p-card">Aucun magasin trouvé.</p>`;
   }
 }
-
+function loadAdminName() {
+  const sessionAdmin = JSON.parse(localStorage.getItem("sessionAdmin"));
+  if (sessionAdmin) {
+    const adminNameElement = document.getElementById("admin-name");
+    if (adminNameElement) {
+      adminNameElement.innerHTML = `Logout <br /> ${sessionAdmin.name}`;
+    }
+  } else {
+    window.location.href = "index.html"; // Redirect to login page if session is not valid
+  }
+}
 document.addEventListener("DOMContentLoaded", function () {
+  // Load admin name and check session
+  loadAdminName();
+
+  // Logout functionality
+  const logoutButton = document.getElementById("logout-button");
+  logoutButton.addEventListener("click", logout);
+
   // Sélectionner l'élément span avec la classe "grid-symbol"
   const gridSymbol = document.querySelector(".grid-symbol");
   const gridSymbol_2 = document.querySelector(".grid-symbol-2");

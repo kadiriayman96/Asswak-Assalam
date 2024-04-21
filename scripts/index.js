@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (admin) {
       if (admin.id === 69) {
-        window.location.href = "dashboard-analytics.html";
+        window.location.href = "liste-des-magasins.html";
       } else {
         alert("You are not an admin");
       }
@@ -65,6 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // prevent logged in admins to return to index.html
   if (localStorage.getItem("sessionAdmin")) {
-    window.location.href = "dashboard-analytics.html";
+    window.location.href = "liste-des-magasins.html";
   }
 });

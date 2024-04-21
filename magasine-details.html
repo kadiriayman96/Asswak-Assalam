@@ -14,8 +14,8 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="magasine-details.css" />
+    <link rel="stylesheet" href="style/styles.css" />
+    <link rel="stylesheet" href="style/magasine-details.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -61,11 +61,13 @@
           <div class="logout-profile">
             <img src="img/admin-logo.jpg" alt="logo" class="logout-logo" />
             <div>
-              <div class="admin-name">Logout <br />Admin Name</div>
+              <div class="admin-name" id="admin-name"></div>
             </div>
           </div>
           <div class="logout-icon">
-            <span class="material-symbols-outlined"> logout </span>
+            <span class="material-symbols-outlined" id="logout-button">
+              logout
+            </span>
           </div>
         </div>
       </nav>
@@ -94,16 +96,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="dashboard-analytics.html">Dashboard Analytics</a>
+                  <a class="nav-link" href="dashboard-analytics.html"
+                    >Dashboard Analytics</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="liste-des-magasins.html">Liste des Magasins</a>
+                  <a class="nav-link" href="liste-des-magasins.html"
+                    >Liste des Magasins</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="ajouter-magasin.html">Ajouter un magasin</a>
+                  <a class="nav-link" href="ajouter-magasin.html"
+                    >Ajouter un magasin</a
+                  >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Logout</a>
+                  <a class="nav-link" onclick="logout()">Logout</a>
                 </li>
               </ul>
             </div>
@@ -114,7 +122,7 @@
         <div class="right-content">
           <div class="div">
             <div class="container">
-              <div class="row" style="padding-top: 12px !important;">
+              <div class="row" style="padding-top: 12px !important">
                 <div class="col-lg-6">
                   <div class="magasinCard-info">
                     <div class="magasi-info">
@@ -151,7 +159,7 @@
             </div>
           </div>
           <div class="table-div">
-            <div class="container"  id="ddd">
+            <div class="container" id="ddd">
               <div class="table-responsive">
                 <table class="table table-hover" id="table">
                   <thead class="pad-tbl">
@@ -163,8 +171,7 @@
                       <th>Action a faire</th>
                     </tr>
                   </thead>
-                  <tbody class="pad-tbl">
-                  </tbody>
+                  <tbody class="pad-tbl"></tbody>
                 </table>
               </div>
             </div>
@@ -173,80 +180,112 @@
         <div id="addModalBg">
           <div class="addModal">
             <div class="closeBtnContainer">
-                <span id="customCloseBtn" class="custom-close">&times;</span>
+              <span id="customCloseBtn" class="custom-close">&times;</span>
             </div>
-              <div class="modalLogo">
-                  <img src="img/logo.png" alt="">
+            <div class="modalLogo">
+              <img src="img/logo.png" alt="" />
+            </div>
+            <form id="addModal-form">
+              <div class="inputContainer">
+                <label>Année</label>
+                <input type="text" placeholder="2024" id="annee" required />
               </div>
-              <form id="addModal-form">
-                  <div class="inputContainer">
-                      <label>Année</label>
-                      <input type="text" placeholder="2024" id="annee" required>
-                  </div>
-                  <div class="inputContainer">
-                      <label>CA</label>
-                      <input type="text" placeholder="Chiffre d’affaires" id="ca" required>
-                  </div>
-                  <div class="inputContainer">
-                      <label>Effectifs</label>
-                      <input type="text" placeholder="420" id="effectifs" required>
-                  </div>
-                  <div class="inputContainer">
-                      <label>Surface</label>
-                      <input type="text" placeholder="900 m²" id="surface" required>
-                  </div>
-                  <div class="inputContainer" id="submit-btn">
-                      <button type="submit">Ajouter</button>
-                  </div>
-              </form>
+              <div class="inputContainer">
+                <label>CA</label>
+                <input
+                  type="text"
+                  placeholder="Chiffre d’affaires"
+                  id="ca"
+                  required
+                />
+              </div>
+              <div class="inputContainer">
+                <label>Effectifs</label>
+                <input type="text" placeholder="420" id="effectifs" required />
+              </div>
+              <div class="inputContainer">
+                <label>Surface</label>
+                <input type="text" placeholder="900 m²" id="surface" required />
+              </div>
+              <div class="inputContainer" id="submit-btn">
+                <button type="submit">Ajouter</button>
+              </div>
+            </form>
           </div>
         </div>
         <div id="updateModalBg">
           <div class="updateModal">
             <div class="closeBtnContainer">
-                <span id="customCloseBtnUp" class="custom-close">&times;</span>
+              <span id="customCloseBtnUp" class="custom-close">&times;</span>
             </div>
-              <div class="modalLogo">
-                  <img src="img/logo.png" alt="">
+            <div class="modalLogo">
+              <img src="img/logo.png" alt="" />
+            </div>
+            <form id="updateModal-form">
+              <div class="inputContainer">
+                <label>Année</label>
+                <input
+                  type="text"
+                  placeholder="2024"
+                  id="update-annee"
+                  required
+                />
               </div>
-              <form id="updateModal-form">
-                  <div class="inputContainer">
-                      <label>Année</label>
-                      <input type="text" placeholder="2024" id="update-annee" required>
-                  </div>
-                  <div class="inputContainer">
-                      <label>CA</label>
-                      <input type="text" placeholder="Chiffre d’affaires" id="update-ca" required>
-                  </div>
-                  <div class="inputContainer">
-                      <label>Effectifs</label>
-                      <input type="text" placeholder="420" id="update-effectifs" required>
-                  </div>
-                  <div class="inputContainer">
-                      <label>Surface</label>
-                      <input type="text" placeholder="900 m²" id="update-surface" required>
-                  </div>
-                  <div class="inputContainer" id="submit-btn">
-                      <button type="submit">Modifer</button>
-                  </div>
-              </form>
+              <div class="inputContainer">
+                <label>CA</label>
+                <input
+                  type="text"
+                  placeholder="Chiffre d’affaires"
+                  id="update-ca"
+                  required
+                />
+              </div>
+              <div class="inputContainer">
+                <label>Effectifs</label>
+                <input
+                  type="text"
+                  placeholder="420"
+                  id="update-effectifs"
+                  required
+                />
+              </div>
+              <div class="inputContainer">
+                <label>Surface</label>
+                <input
+                  type="text"
+                  placeholder="900 m²"
+                  id="update-surface"
+                  required
+                />
+              </div>
+              <div class="inputContainer" id="submit-btn">
+                <button type="submit">Modifer</button>
+              </div>
+            </form>
           </div>
         </div>
         <div id="deleteModalBg">
           <div class="deleteModal">
             <div class="closeBtnContainer">
-                <span id="customCloseBtnDel" class="custom-close">&times;</span>
+              <span id="customCloseBtnDel" class="custom-close">&times;</span>
             </div>
             <div class="deleteTitle">
-              <p id="title">Êtes-vous sûr de vouloir <br>
-                supprimer ceci ?</p>
+              <p id="title">
+                Êtes-vous sûr de vouloir <br />
+                supprimer ceci ?
+              </p>
             </div>
             <div class="deleteText">
-              <p id="text">Cette action est irréversible et entraînera la perte définitive de toutes les données associées.  Veuillez réfléchir attentivement avant de continuer.</p>
+              <p id="text">
+                Cette action est irréversible et entraînera la perte définitive
+                de toutes les données associées. Veuillez réfléchir
+                attentivement avant de continuer.
+              </p>
             </div>
             <div class="delcancBtn">
-              <div class="sup"><p>Supprimer</p></div> 
-              <div class="canc" id="cancelBtn"><p>Cancel</p></div> 
+              <div class="sup"><p>Supprimer</p></div>
+              <div class="canc" id="cancelBtn"><p>Cancel</p></div>
+            </div>
           </div>
         </div>
       </div>
