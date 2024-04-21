@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  //Load magasins data from local storage
+  // Load magasins data from local storage
   var magasins = JSON.parse(localStorage.getItem("magasins")) || [];
 
   // Load year select from local storage
@@ -31,9 +31,23 @@ document.addEventListener("DOMContentLoaded", function () {
     displayMedian(magasins, selectedYear);
     displayStandardDeviation(magasins, selectedYear);
     displayCoefficientOfVariation(magasins, selectedYear);
-    // Load and display chart data
-    const frequencies = classifyMagasinsByRange(magasins, selectedYear);
-    displayBarChartCA(frequencies);
+
+    displayWeightedArithmeticMeanEffectifs(magasins, selectedYear);
+    displayModeEffectifs(magasins, selectedYear);
+    displayMedianEffectifs(magasins, selectedYear);
+    displayStandardDeviationEffectifs(magasins, selectedYear);
+    displayCoefficientOfVariationEffectifs(magasins, selectedYear);
+
+    // Load and display chart data for Chiffre d'affaires
+    const frequenciesCA = classifyMagasinsByRange(magasins, selectedYear);
+    displayBarChartCA(frequenciesCA);
+
+    // Load and display chart data for Effectifs
+    const frequenciesEffectifs = classifyMagasinsByEffectifsRange(
+      magasins,
+      selectedYear
+    );
+    displayBarChartEffectifs(frequenciesEffectifs);
   }
 
   // Attach change event listener to the year-select element
@@ -46,8 +60,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initial calculation when the page is loaded
   loadDataAndCalculateStatistics();
 });
+
+// Function to load year select options from local storage
 function loadYearSelectFromLocalStorage() {
-  // Retrieve magasins data from local storage
   const magasins = JSON.parse(localStorage.getItem("magasins")) || [];
 
   // Extract unique years from magasins data
@@ -79,6 +94,7 @@ function loadYearSelectFromLocalStorage() {
     yearSelect.dispatchEvent(new Event("change"));
   }
 }
+
 // Logout function
 function logout() {
   localStorage.removeItem("sessionAdmin");
@@ -97,8 +113,76 @@ function loadAdminName() {
     window.location.href = "index.html"; // Redirect to login page if session is not valid
   }
 }
+// Function to populate table data with magasins information
+function populateTableData(magasins) {
+  const tableBodies = document.querySelectorAll(".table-data-all-mg");
 
-// Calculate Weighted Arithmetic Mean (Moyenne arithmétique pondérée) for Chiffre d'affaires
+  // Iterate over each table body element
+  tableBodies.forEach((tableBody) => {
+    tableBody.innerHTML = ""; // Clear existing table rows
+
+    magasins.forEach((magasin) => {
+      let statutClass =
+        magasin.status === "Actif" ? "statut-active" : "statut-notactive";
+      let statutText = magasin.status === "Actif" ? "Actif" : "Inactif";
+
+      const row = `
+        <tr>
+          <td>${magasin.name}</td>
+          <td>${magasin.ville}</td>
+          <td>${magasin.numeroTelephone}</td>
+          <td>${magasin.adresse}</td>
+          <td>${magasin.surface}</td>
+          <td>
+            <div class="${statutClass}">${statutText}</div>
+          </td>
+        </tr>
+      `;
+
+      tableBody.innerHTML += row;
+    });
+  });
+}
+
+// <--------------------------- Chiffre d'affaires Fucntions ----------------------------->
+
+// Function to classify magasins by Chiffre d'affaires range
+function classifyMagasinsByRange(magasins, selectedYear) {
+  const ranges = [
+    { label: "[33,39[", min: 3300000, max: 3900000 },
+    { label: "[39,45[", min: 3900000, max: 4500000 },
+    { label: "[45,51[", min: 4500000, max: 5100000 },
+    { label: "[51,57[", min: 5100000, max: 5700000 },
+    { label: "[57,63[", min: 5700000, max: 6300000 },
+  ];
+
+  const frequencies = new Array(ranges.length).fill(0);
+
+  magasins.forEach((magasin) => {
+    magasin.MagasinDetails.forEach((detail) => {
+      const ca = parseInt(detail.ca);
+      const year = parseInt(detail.annee);
+
+      // Check if CA is a valid number and matches the selected year
+      if (!isNaN(ca) && year === selectedYear) {
+        // Find the range index for the current CA
+        for (let i = 0; i < ranges.length; i++) {
+          const { min, max } = ranges[i];
+
+          // Check if CA falls within the current range
+          if (ca >= min && ca < max) {
+            frequencies[i]++;
+            break; // Exit the loop once the range is found
+          }
+        }
+      }
+    });
+  });
+
+  return frequencies;
+}
+
+// Function to calculate Weighted Arithmetic Mean (Moyenne arithmétique pondérée) for Chiffre d'affaires
 function calculateWeightedArithmeticMean(magasins, year) {
   let totalCA = 0;
   let totalWeight = 0;
@@ -109,8 +193,8 @@ function calculateWeightedArithmeticMean(magasins, year) {
     );
 
     if (details) {
-      const ca = details.ca;
-      const weight = details.effectifs;
+      const ca = parseInt(details.ca);
+      const weight = parseInt(details.effectifs);
       totalCA += ca * weight;
       totalWeight += weight;
     }
@@ -121,7 +205,7 @@ function calculateWeightedArithmeticMean(magasins, year) {
   return totalCA / totalWeight;
 }
 
-// Display Weighted Arithmetic Mean on the webpage
+// Function to display Weighted Arithmetic Mean on the webpage
 function displayWeightedArithmeticMean(magasins, year) {
   const mean = calculateWeightedArithmeticMean(magasins, year);
   const meanElement = document.getElementById("weighted-mean");
@@ -130,7 +214,7 @@ function displayWeightedArithmeticMean(magasins, year) {
   }
 }
 
-// Calculate Mode for Chiffre d'affaires
+// Function to calculate Mode for Chiffre d'affaires
 function calculateMode(magasins, year) {
   const caValues = magasins
     .flatMap((magasin) =>
@@ -155,7 +239,7 @@ function calculateMode(magasins, year) {
   return mode;
 }
 
-// Display Mode on the webpage
+// Function to display Mode on the webpage
 function displayMode(magasins, year) {
   const mode = calculateMode(magasins, year);
   const modeElement = document.getElementById("mode-value");
@@ -168,7 +252,7 @@ function displayMode(magasins, year) {
   }
 }
 
-// Calculate Median for Chiffre d'affaires
+// Function to calculate Median for Chiffre d'affaires
 function calculateMedian(magasins, year) {
   const caValues = magasins
     .flatMap((magasin) =>
@@ -186,7 +270,7 @@ function calculateMedian(magasins, year) {
   }
 }
 
-// Display Median on the webpage
+// Function to display Median on the webpage
 function displayMedian(magasins, year) {
   const median = calculateMedian(magasins, year);
   const medianElement = document.getElementById("median-value");
@@ -203,7 +287,7 @@ function displayMedian(magasins, year) {
   }
 }
 
-// Calculate Standard Deviation for Chiffre d'affaires
+// Function to calculate Standard Deviation for Chiffre d'affaires
 function calculateStandardDeviation(magasins, year) {
   const caValues = magasins
     .flatMap((magasin) =>
@@ -219,16 +303,16 @@ function calculateStandardDeviation(magasins, year) {
   return Math.sqrt(variance);
 }
 
-// Display Standard Deviation on the webpage
+// Function to display Standard Deviation on the webpage
 function displayStandardDeviation(magasins, year) {
   const standardDeviation = calculateStandardDeviation(magasins, year);
   const standardDeviationElement = document.getElementById("ecart-type");
   if (standardDeviationElement) {
-    standardDeviationElement.innerHTML = `${standardDeviation.toFixed(2)} DH`;
+    standardDeviationElement.innerHTML = `${standardDeviation.toFixed(2)} %`;
   }
 }
 
-// Calculate Coefficient of Variation for Chiffre d'affaires
+// Function to calculate Coefficient of Variation for Chiffre d'affaires
 function calculateCoefficientOfVariation(magasins, year) {
   const mean = calculateWeightedArithmeticMean(magasins, year);
   const standardDeviation = calculateStandardDeviation(magasins, year);
@@ -238,7 +322,7 @@ function calculateCoefficientOfVariation(magasins, year) {
   return (standardDeviation / mean) * 100;
 }
 
-// Display Coefficient of Variation on the webpage
+// Function to display Coefficient of Variation on the webpage
 function displayCoefficientOfVariation(magasins, year) {
   const coefficientOfVariation = calculateCoefficientOfVariation(
     magasins,
@@ -256,76 +340,9 @@ function displayCoefficientOfVariation(magasins, year) {
     ecartTypeTextElement.textContent = `${coefficientOfVariation.toFixed(3)} %`;
   }
 }
-function populateTableData(magasins) {
-  const tableBody = document.getElementById("table-ca");
-  tableBody.innerHTML = ""; // Clear existing table rows
-
-  magasins.forEach((magasin) => {
-    let statutClass =
-      magasin.status === "Actif" ? "statut-active" : "statut-notactive";
-    let statutText = magasin.status === "Actif" ? "Actif" : "Inactif";
-
-    const row = `
-      <tr>
-        <td>${magasin.name}</td>
-        <td>${magasin.ville}</td>
-        <td>${magasin.numeroTelephone}</td>
-        <td>${magasin.adresse}</td>
-        <td>${magasin.surface}</td>
-        <td>
-          <div class="${statutClass}">${
-      magasin.status === "Actif" ? "Actif" : "Inactif"
-    }</div>
-        </td>
-      </tr>
-    `;
-
-    tableBody.innerHTML += row;
-  });
-}
-
-// Function to classify magasins by CA range
-function classifyMagasinsByRange(magasins, selectedYear) {
-  const ranges = [
-    { label: "[33,39[", min: 3300000, max: 3900000 },
-    { label: "[39,45[", min: 3900000, max: 4500000 },
-    { label: "[45,51[", min: 4500000, max: 5100000 },
-    { label: "[51,57[", min: 5100000, max: 5700000 },
-    { label: "[57,63[", min: 5700000, max: 6300000 },
-  ];
-
-  const frequencies = new Array(ranges.length).fill(0);
-
-  magasins.forEach((magasin) => {
-    magasin.MagasinDetails.forEach((detail) => {
-      const ca = parseInt(detail.ca);
-      const year = parseInt(detail.annee);
-
-      // Check if ca is a valid number and matches the selected year
-      if (!isNaN(ca) && year === selectedYear) {
-        // Find the range index for the current CA
-        for (let i = 0; i < ranges.length; i++) {
-          const { min, max } = ranges[i];
-
-          // Check if CA falls within the current range
-          if (ca >= min && ca < max) {
-            frequencies[i]++;
-            break; // Exit the loop once the range is found
-          }
-        }
-      }
-    });
-  });
-
-  console.log(frequencies); // Output frequencies to inspect
-
-  return frequencies;
-}
-
-// Function to display bar chart using Chart.js Chiffre d'affaires
-// Function to display bar chart using Chart.js for magasins classified by CA range
+// Function to display bar chart using Chart.js for Chiffre d'affaires
 function displayBarChartCA(frequencies) {
-  const ranges = ["[33,39[", "[39,45[", "[45,51[", "[51,57[", "[57,63["];
+  const ranges = ["[33,39]", "[39,45]", "[45,51]", "[51,57]", "[57,63]"];
 
   const canvas = document.getElementById("myChartCA");
   const ctx = canvas.getContext("2d");
@@ -341,7 +358,7 @@ function displayBarChartCA(frequencies) {
       labels: ranges,
       datasets: [
         {
-          label: "Frequency of Magasins by CA Range",
+          label: "Fréquence par rapport au CA",
           data: frequencies,
           backgroundColor: [
             "rgba(255, 99, 132, 0.5)",
@@ -362,18 +379,285 @@ function displayBarChartCA(frequencies) {
       ],
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         y: {
           beginAtZero: true,
           title: {
             display: true,
-            text: "Frequency",
+            text: "Fréquence",
           },
         },
         x: {
           title: {
             display: true,
-            text: "CA Range",
+            text: "CA",
+          },
+        },
+      },
+    },
+  });
+}
+
+// <--------------------------- Effectifs Fucntions ----------------------------->
+
+// Function to classify magasins by Effectifs range
+function classifyMagasinsByEffectifsRange(magasins, selectedYear) {
+  const ranges = [
+    { label: "10-20", min: 10, max: 20 },
+    { label: "21-30", min: 21, max: 30 },
+    { label: "31-40", min: 31, max: 40 },
+    { label: "41-50", min: 41, max: 50 },
+  ];
+
+  const frequencies = new Array(ranges.length).fill(0);
+
+  magasins.forEach((magasin) => {
+    magasin.MagasinDetails.forEach((detail) => {
+      const effectif = parseInt(detail.effectifs);
+      const year = parseInt(detail.annee);
+
+      // Check if effectif is a valid number and matches the selected year
+      if (!isNaN(effectif) && year === selectedYear) {
+        // Find the range index for the current effectif
+        for (let i = 0; i < ranges.length; i++) {
+          const { min, max } = ranges[i];
+
+          // Check if effectif falls within the current range
+          if (effectif >= min && effectif <= max) {
+            frequencies[i]++;
+            break; // Exit the loop once the range is found
+          }
+        }
+      }
+    });
+  });
+
+  return frequencies;
+}
+
+//Calculate Weighted Arithmetic Mean for Effectifs
+function calculateWeightedArithmeticMeanEffectifs(magasins, year) {
+  let totalEffectifs = 0;
+  let totalWeight = 0;
+
+  magasins.forEach((magasin) => {
+    var details = magasin.MagasinDetails.find(
+      (detail) => parseInt(detail.annee) === year
+    );
+
+    if (details) {
+      const effectifs = parseInt(details.effectifs);
+      const weight = parseInt(details.ca);
+      totalEffectifs += effectifs * weight;
+      totalWeight += weight;
+    }
+  });
+
+  if (totalWeight === 0) return 0; // Handle division by zero
+
+  return totalEffectifs / totalWeight;
+}
+
+//Display Weighted Arithmetic Mean for Effectifs
+function displayWeightedArithmeticMeanEffectifs(magasins, year) {
+  const mean = calculateWeightedArithmeticMeanEffectifs(magasins, year);
+  const meanElement = document.getElementById("weighted-mean-effectifs");
+  if (meanElement) {
+    meanElement.innerHTML = `${mean.toFixed(2)} personnes`;
+  }
+}
+
+//Calculate Mode for Effectifs
+function calculateModeEffectifs(magasins, year) {
+  const effectifsValues = magasins
+    .flatMap((magasin) =>
+      magasin.MagasinDetails.filter((detail) => parseInt(detail.annee) === year)
+    )
+    .map((detail) => parseInt(detail.effectifs));
+
+  const counts = {};
+  effectifsValues.forEach((value) => {
+    counts[value] = (counts[value] || 0) + 1;
+  });
+
+  let mode = null;
+  let maxCount = 0;
+  Object.entries(counts).forEach(([value, count]) => {
+    if (count > maxCount) {
+      maxCount = count;
+      mode = parseInt(value);
+    }
+  });
+
+  return mode;
+}
+
+//Display Mode for Effectifs
+function displayModeEffectifs(magasins, year) {
+  const mode = calculateModeEffectifs(magasins, year);
+  const modeElement = document.getElementById("mode-value-effectifs");
+  const modeTextElement = document.getElementById("mode-value-text-effectifs");
+  if (modeElement) {
+    modeElement.textContent = `${mode} personnes`;
+  }
+  if (modeTextElement) {
+    modeTextElement.textContent = `${mode} personnes`;
+  }
+}
+
+//Calculate Median for Effectifs
+function calculateMedianEffectifs(magasins, year) {
+  const effectifsValues = magasins
+    .flatMap((magasin) =>
+      magasin.MagasinDetails.filter((detail) => parseInt(detail.annee) === year)
+    )
+    .map((detail) => parseInt(detail.effectifs));
+
+  effectifsValues.sort((a, b) => a - b);
+
+  const mid = Math.floor(effectifsValues.length / 2);
+  if (effectifsValues.length % 2 === 0) {
+    return (effectifsValues[mid - 1] + effectifsValues[mid]) / 2;
+  } else {
+    return effectifsValues[mid];
+  }
+}
+
+//Display Median for Effectifs
+function displayMedianEffectifs(magasins, year) {
+  const median = calculateMedianEffectifs(magasins, year);
+  const medianElement = document.getElementById("median-value-effectifs");
+  const medianTextElement = document.getElementById(
+    "median-value-text-effectif"
+  );
+  const medianTypeText = document.getElementById("median-type-texts-effectifs");
+
+  if (medianElement) {
+    medianElement.textContent = `${median.toFixed(2)} personnes`;
+  }
+  if (medianTextElement) {
+    medianTextElement.textContent = `${median.toFixed(2)} personnes`;
+  }
+  if (medianTypeText) {
+    medianTypeText.textContent = `${median.toFixed(2)} personnes`;
+  }
+}
+
+//Calculate Standard Deviation for Effectifs
+function calculateStandardDeviationEffectifs(magasins, year) {
+  const effectifsValues = magasins
+    .flatMap((magasin) =>
+      magasin.MagasinDetails.filter((detail) => parseInt(detail.annee) === year)
+    )
+    .map((detail) => parseInt(detail.effectifs));
+
+  const mean = calculateWeightedArithmeticMeanEffectifs(magasins, year);
+  const squaredDifferences = effectifsValues.map(
+    (value) => (value - mean) ** 2
+  );
+  const variance =
+    squaredDifferences.reduce((acc, val) => acc + val, 0) /
+    effectifsValues.length;
+
+  return Math.sqrt(variance);
+}
+
+//Display Standard Deviation for Effectifs
+function displayStandardDeviationEffectifs(magasins, year) {
+  const standardDeviation = calculateStandardDeviationEffectifs(magasins, year);
+  const standardDeviationElement = document.getElementById(
+    "ecart-type-effectifs"
+  );
+  const ecartTypeTextElement = document.getElementById(
+    "ecart-type-text-effectifs"
+  );
+  if (standardDeviationElement) {
+    standardDeviationElement.innerHTML = `${standardDeviation.toFixed(2)} %`;
+  }
+  if (ecartTypeTextElement) {
+    ecartTypeTextElement.innerHTML = `${standardDeviation.toFixed(2)} %`;
+  }
+}
+
+//Calculate Coefficient of Variation for Effectifs
+function calculateCoefficientOfVariationEffectifs(magasins, year) {
+  const mean = calculateWeightedArithmeticMeanEffectifs(magasins, year);
+  const standardDeviation = calculateStandardDeviationEffectifs(magasins, year);
+
+  if (mean === 0) return 0; // Handle division by zero
+
+  return (standardDeviation / mean) * 100;
+}
+//Display Coefficient of Variation for Effectifs
+function displayCoefficientOfVariationEffectifs(magasins, year) {
+  const coefficientOfVariation = calculateCoefficientOfVariationEffectifs(
+    magasins,
+    year
+  );
+  const coefficientValueElement = document.getElementById(
+    "coefficient-value-effectifs"
+  );
+
+  if (coefficientValueElement) {
+    coefficientValueElement.textContent = `${coefficientOfVariation.toFixed(
+      3
+    )} %`;
+  }
+}
+
+// Function to display bar chart using Chart.js for Effectifs
+function displayBarChartEffectifs(frequencies) {
+  const ranges = ["10-20", "21-30", "31-40", "41-50"];
+
+  const canvas = document.getElementById("myChartEffectifs");
+  const ctx = canvas.getContext("2d");
+
+  // Check if a chart instance already exists
+  if (Chart.getChart(canvas)) {
+    Chart.getChart(canvas).destroy(); // Destroy the existing chart
+  }
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ranges,
+      datasets: [
+        {
+          label: "Fréquence par rapport aux Effectifs",
+          data: frequencies,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.5)",
+            "rgba(54, 162, 235, 0.5)",
+            "rgba(255, 206, 86, 0.5)",
+            "rgba(75, 192, 192, 0.5)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: "Fréquence",
+          },
+        },
+        x: {
+          title: {
+            display: true,
+            text: "Effectifs",
           },
         },
       },

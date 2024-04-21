@@ -257,6 +257,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="col-sm center-things" id="chart-space">
                   <canvas id="myChartCA" class="myChart"></canvas>
                 </div>
@@ -273,7 +274,7 @@
                           <th>Status</th>
                         </tr>
                       </thead>
-                      <tbody class="pad-tbl" id="table-ca"></tbody>
+                      <tbody class="pad-tbl table-data-all-mg"></tbody>
                     </table>
                   </div>
                 </div>
@@ -296,9 +297,12 @@
                         Moyenne arithmétique pondérée
                       </div>
                       <div class="card-body">
-                        <h4 class="card-title">769 personnes</h4>
+                        <h4 class="card-title" id="weighted-mean-effectifs">
+                          ---
+                        </h4>
                         <p class="card-text">
-                          L'effectifs moyen de tous les magasins
+                          Le nombre de personnes qui sont dans le moyen de tous
+                          les magasins
                         </p>
                       </div>
                     </div>
@@ -314,10 +318,13 @@
                     <div class="card-data">
                       <div class="card-header">Mode</div>
                       <div class="card-body">
-                        <h4 class="card-title">1069 personnes</h4>
+                        <h4 class="card-title" id="mode-value-effectifs">
+                          ---
+                        </h4>
                         <p class="card-text">
-                          L'effectis réalisé par le plus grand nombre de
-                          magasins est 1069 personnes
+                          Le nombre d'effectifs dans le plus grand nombre de
+                          magasins est
+                          <span id="mode-value-text-effectifs">----</span>
                         </p>
                       </div>
                     </div>
@@ -333,11 +340,14 @@
                     <div class="card-data">
                       <div class="card-header">Médiane</div>
                       <div class="card-body">
-                        <h4 class="card-title">3950 personnes</h4>
+                        <h4 class="card-title" id="median-value-effectifs">
+                          ---
+                        </h4>
                         <p class="card-text">
-                          50% des personnes ont des effectis à 850 personnes et
-                          par conséquent 50% d'entre eux travagent dans les
-                          magasins
+                          50% des magasins ont un effectifs inférieur à
+                          <span id="median-value-text-effectif">----</span>, et
+                          par conséquent 50% d'entre ont un effectif supérieur à
+                          ce résultat
                         </p>
                       </div>
                     </div>
@@ -355,18 +365,25 @@
                         Écart-type et coefficient de variation
                       </div>
                       <div class="card-body">
-                        <h4 class="card-title">35,69%</h4>
+                        <h4 class="card-title" id="ecart-type-effectifs">
+                          ----
+                        </h4>
                         <p class="card-text">
-                          L'écart-type montre que les effectis des magasins
-                          s'écartent en moyenne de 970 personnes, et le
-                          coefficient de variation est de 1.9 ce qui signifie
-                          que l'écart type représente 970 personnes de la
-                          moyenne, donc la plupart des personnes sont centrés
+                          L'écart-type montre que l"effectif des magasins
+                          s'écartent en moyenne de
+                          <span id="median-type-texts-effectifs">----</span>, et
+                          le coefficient de variation est de
+                          <span id="coefficient-value-effectifs">----</span> ce
+                          qui signifie que l'écart type représente
+                          <span id="ecart-type-text-effectifs">----</span> de la
+                          moyenne, donc la plupart d'effectifs sont centrés
+                          autour d'effectifs moyenne.
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="col-sm center-things" id="chart-space">
                   <canvas id="myChartEffectifs" class="myChart"></canvas>
                 </div>
@@ -383,7 +400,7 @@
                           <th>Status</th>
                         </tr>
                       </thead>
-                      <tbody class="pad-tbl" id="table-effectifs"></tbody>
+                      <tbody class="pad-tbl table-data-all-mg"></tbody>
                     </table>
                   </div>
                 </div>
@@ -491,7 +508,7 @@
                           <th>Status</th>
                         </tr>
                       </thead>
-                      <tbody class="pad-tbl" id="table-surface"></tbody>
+                      <tbody class="pad-tbl table-data-all-mg"></tbody>
                     </table>
                   </div>
                 </div>
