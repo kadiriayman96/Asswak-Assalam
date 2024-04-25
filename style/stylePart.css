@@ -16,12 +16,12 @@
 
   margin-top: 3%;
 }
-body {
+/* body {
   background-image  : url(../img/633.jpg);
   background-size: cover;
   background-position: center;
-  /* opacity: 0.6; */
-}
+  
+} */
 .content {
   background-color: rgb(0, 0, 0);
 }
