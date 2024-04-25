@@ -79,8 +79,15 @@
     .magasinCard-info {
         width: 100%;
     }
+    
 }
-
+/* @media screen and (max-width: 576px) {
+    .addModal, .updateModal {
+        width: 60%;
+        height: 72%;
+        background-color: white;
+    }
+} */
 .btn-ajou p {
     color: white;
     font-size: 1.5rem;
@@ -163,7 +170,7 @@
     z-index: 1000;
 }
 .addModal, .updateModal {
-    width: 28%;
+    width: 35rem;
     height: 72%;
     background-color: white;
 }
@@ -286,3 +293,4 @@ font-size: 1.8rem;
     font-size: 1.5rem;
     padding-top: 2px;
 }
+
